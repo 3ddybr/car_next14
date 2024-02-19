@@ -1,0 +1,5 @@
+ Ao usar set() para criar um documento, você precisa especificar um ID para ele. Exemplo:
+
+ import { doc, setDoc } from "firebase/firestore";
+
+ await setDoc(doc(db, "cities", "new-city-id"), data);

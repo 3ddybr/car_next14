@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const BannerContainer = styled.div`
   width: 100%;
@@ -11,7 +11,7 @@ export const BannerContainer = styled.div`
 
   padding: 0 0.5rem;
   /* border: 1px solid red; */
-`;
+`
 
 export const BannerContent = styled.div`
   width: 100%;
@@ -23,7 +23,7 @@ export const BannerContent = styled.div`
   position: relative;
 
   /* border: 1px solid red; */
-`;
+`
 
 export const BannerText = styled.div`
   max-width: 35rem;
@@ -72,7 +72,7 @@ export const BannerText = styled.div`
     font-size: 1.6rem;
     padding: 8px 16px;
   }
-`;
+`
 
 export const BannerImg = styled.div`
   min-width: 87rem;
@@ -83,7 +83,7 @@ export const BannerImg = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
-`;
+`
 
 export const BannerButtonLink = styled.a`
   font-size: 1.8rem;
@@ -99,4 +99,4 @@ export const BannerButtonLink = styled.a`
   :hover {
     background: var(--information);
   }
-`;
+`

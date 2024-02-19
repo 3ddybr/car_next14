@@ -1,23 +1,24 @@
-import { dataTiposCarros } from "../../../../utils/dataTipoCarros";
-import { FilterButtonLink, FilterContainer, FilterContent } from "./styles";
-import { useForm } from "react-hook-form";
-import { dataMarcas } from "../../../../utils/dataMarcas";
+import { FilterButtonLink, FilterContainer, FilterContent } from './styles'
+import { useForm } from 'react-hook-form'
 // import { FormEvent } from "react";
-import { SelectTipos } from "../../../SelectTipos";
+import { SelectTipos } from '../../../SelectTipos'
+import { dataTiposCarros } from '@/utils/dataTipoCarros'
+import { dataMarcas } from '@/utils/dataMarcas'
 
 export function Filter() {
   const {
-    register,
+    // register,
     handleSubmit,
     control,
-    formState: { errors },
+    // formState: { errors },
   } = useForm({
     // resolver: yupResolver(schema),
-  });
+  })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmitForm = (event: any) => {
-    return console.log(event);
-  };
+    return console.log(event)
+  }
   return (
     <FilterContainer>
       <FilterContent onSubmit={handleSubmit(handleSubmitForm)}>
@@ -40,5 +41,5 @@ export function Filter() {
         <FilterButtonLink type="submit">Pesquisar</FilterButtonLink>
       </FilterContent>
     </FilterContainer>
-  );
+  )
 }

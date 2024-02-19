@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const FilterContainer = styled.div`
   /* max-width: 103rem; */
@@ -23,7 +23,7 @@ export const FilterContainer = styled.div`
     top: 46rem;
     max-width: 38rem;
   }
-`;
+`
 
 export const FilterContent = styled.form`
   display: flex;
@@ -71,7 +71,7 @@ export const FilterContent = styled.form`
     padding: 2rem 1rem;
     gap: 1rem;
   }
-`;
+`
 
 export const FilterButtonLink = styled.a`
   font-size: 1.8rem;
@@ -87,4 +87,4 @@ export const FilterButtonLink = styled.a`
   :hover {
     background: var(--information);
   }
-`;
+`
