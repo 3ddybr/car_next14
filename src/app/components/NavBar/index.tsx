@@ -1,10 +1,10 @@
-import Link from "next/link";
-import Image from "next/image";
-import React from "react";
-import styled from "styled-components";
-import Burger from "./Burger";
+import Link from 'next/link'
+import Image from 'next/image'
+import React from 'react'
+import styled from 'styled-components'
+import Burger from './Burger'
 
-import LogoIng from "../../../public/assets/logo.svg";
+import LogoIng from '../../../public/assets/logo.svg'
 
 const Nav = styled.nav`
   width: 100%;
@@ -16,7 +16,7 @@ const Nav = styled.nav`
   .logo {
     padding: 15px 0;
   }
-`;
+`
 
 const Navbar = () => {
   return (
@@ -28,7 +28,7 @@ const Navbar = () => {
       </div>
       <Burger />
     </Nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

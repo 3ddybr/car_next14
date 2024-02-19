@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CardContainer = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const CardContainer = styled.div`
   box-shadow: 0px 4px 15px rgba(14, 52, 140, 0.25);
 
   /* border: 1px solid red; */
-`;
+`
 
 export const CardContent = styled.div`
   width: 100%;
@@ -86,7 +86,7 @@ export const CardContent = styled.div`
       color: var(--blue-800);
     }
   }
-`;
+`
 
 export const CardButtonLink = styled.a`
   width: 100vw;
@@ -111,4 +111,4 @@ export const CardButtonLink = styled.a`
   :hover {
     background: var(--information);
   }
-`;
+`

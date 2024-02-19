@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { FooterButtonLink, FooterContainer, FooterContent } from "./styles";
-import LogoIng from "../../../public/assets/logo.svg";
-import { FacebookLogo, InstagramLogo, WhatsappLogo } from "phosphor-react";
+import Image from 'next/image'
+import { FooterButtonLink, FooterContainer, FooterContent } from './styles'
+import LogoIng from '../../../public/assets/logo.svg'
+import { FacebookLogo, InstagramLogo, WhatsappLogo } from 'phosphor-react'
 
 export function Footer() {
   return (
@@ -52,5 +52,5 @@ export function Footer() {
         </footer>
       </FooterContent>
     </FooterContainer>
-  );
+  )
 }

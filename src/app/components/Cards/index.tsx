@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { CardButtonLink, CardContainer, CardContent } from "./styles";
+import Image from 'next/image'
+import { CardButtonLink, CardContainer, CardContent } from './styles'
 
-import MustangImg from "../../../public/assets/fordmustang.svg";
-import { Gauge, Swap } from "phosphor-react";
-import Link from "next/link";
+import MustangImg from '../../../public/assets/fordmustang.svg'
+import { Gauge, Swap } from 'phosphor-react'
+import Link from 'next/link'
 
 export function Cards() {
   return (
@@ -35,5 +35,5 @@ export function Cards() {
         </Link>
       </CardContent>
     </CardContainer>
-  );
+  )
 }

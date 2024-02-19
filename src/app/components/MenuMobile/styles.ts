@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 type sectionType = {
-  isVisible: boolean;
-};
+  isVisible: boolean
+}
 
 export const MenuContainer = styled.section<sectionType>`
   position: absolute;
@@ -78,7 +78,7 @@ export const MenuContainer = styled.section<sectionType>`
     :hover {
       color: var(--white);
       :after {
-        content: "";
+        content: '';
         height: 3px;
         border-radius: 3px 3px 0 0;
         width: 100%;
@@ -105,7 +105,7 @@ export const MenuContainer = styled.section<sectionType>`
         transform: scale(1);
       }
     `}
-`;
+`
 
 export const MobileButtonLink = styled.a`
   font-size: 1.6rem !important;
@@ -121,4 +121,4 @@ export const MobileButtonLink = styled.a`
   :hover {
     background: var(--information) !important;
   }
-`;
+`

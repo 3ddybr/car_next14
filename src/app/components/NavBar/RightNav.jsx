@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import ActiveLink from "../ActiveLink";
-import styled from "styled-components";
+import React from 'react'
+import Link from 'next/link'
+import ActiveLink from '../ActiveLink'
+import styled from 'styled-components'
 
-import { MagnifyingGlass } from "phosphor-react";
+import { MagnifyingGlass } from 'phosphor-react'
 
 const Ul = styled.ul`
   list-style: none;
@@ -16,7 +16,7 @@ const Ul = styled.ul`
     flex-flow: column nowrap;
     background-color: #0d2538;
     position: fixed;
-    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
+    transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
     top: 0;
     right: 0;
     height: 100vh;
@@ -27,7 +27,7 @@ const Ul = styled.ul`
       color: #fff;
     }
   }
-`;
+`
 
 const RightNav = ({ open }) => {
   return (
@@ -61,7 +61,7 @@ const RightNav = ({ open }) => {
         </Link>
       </li>
     </Ul>
-  );
-};
+  )
+}
 
-export default RightNav;
+export default RightNav

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const HeaderContainer = styled.div`
   padding: 0 0.5rem;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-`;
+`
 export const HeaderContent = styled.div`
   width: 100vw;
   max-width: 118rem;
@@ -52,7 +52,7 @@ export const HeaderContent = styled.div`
       :hover {
         color: var(--white);
         :after {
-          content: "";
+          content: '';
           height: 3px;
           border-radius: 3px 3px 0 0;
           width: 100%;
@@ -83,7 +83,7 @@ export const HeaderContent = styled.div`
       }
     }
   }
-`;
+`
 
 export const HeaderButtonLink = styled.a`
   font-size: 1.6rem;
@@ -104,4 +104,4 @@ export const HeaderButtonLink = styled.a`
   @media (max-width: 900px) {
     display: none;
   }
-`;
+`

@@ -1,12 +1,13 @@
-import Image from "next/image";
-import Link from "next/link";
-import { HeaderButtonLink, HeaderContainer, HeaderContent } from "./styles";
+import Image from 'next/image'
+import Link from 'next/link'
+import { HeaderButtonLink, HeaderContainer, HeaderContent } from './styles'
 
-import { List, MagnifyingGlass } from "phosphor-react";
+import { List, MagnifyingGlass } from 'phosphor-react'
 
-import LogoIng from "../../../public/assets/logo.svg";
-import ActiveLink from "../ActiveLink";
+import LogoIng from '../../../public/assets/logo.svg'
+import ActiveLink from '../ActiveLink'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function Header({ setMenuIsVisible }: any) {
   return (
     <HeaderContainer>
@@ -52,5 +53,5 @@ export function Header({ setMenuIsVisible }: any) {
         </div>
       </HeaderContent>
     </HeaderContainer>
-  );
+  )
 }

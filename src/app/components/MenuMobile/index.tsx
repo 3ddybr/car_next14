@@ -1,13 +1,14 @@
-import Link from "next/link";
-import { MagnifyingGlass, X } from "phosphor-react";
-import { useEffect } from "react";
-import ActiveLink from "../ActiveLink";
-import { MenuContainer, MobileButtonLink } from "./styles";
+import Link from 'next/link'
+import { X } from 'phosphor-react'
+import { useEffect } from 'react'
+import ActiveLink from '../ActiveLink'
+import { MenuContainer, MobileButtonLink } from './styles'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function MenuMobile({ menuIsVisible, setMenuIsVisible }: any) {
   useEffect(() => {
-    document.body.style.overflow = menuIsVisible ? "hidden" : "auto";
-  }, [menuIsVisible]);
+    document.body.style.overflow = menuIsVisible ? 'hidden' : 'auto'
+  }, [menuIsVisible])
 
   return (
     <MenuContainer isVisible={menuIsVisible}>
@@ -36,5 +37,5 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible }: any) {
         </Link>
       </div>
     </MenuContainer>
-  );
+  )
 }

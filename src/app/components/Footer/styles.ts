@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const FooterContainer = styled.div`
   width: 100%;
@@ -76,7 +76,7 @@ export const FooterContainer = styled.div`
       }
     }
   }
-`;
+`
 
 export const FooterContent = styled.div`
   width: 100%;
@@ -154,7 +154,7 @@ export const FooterContent = styled.div`
       }
     }
   }
-`;
+`
 
 export const FooterButtonLink = styled.a`
   font-size: 1.6rem;
@@ -171,4 +171,4 @@ export const FooterButtonLink = styled.a`
   :hover {
     background: var(--information);
   }
-`;
+`
