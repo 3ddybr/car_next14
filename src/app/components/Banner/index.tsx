@@ -1,14 +1,14 @@
-import Image from "next/image";
+import Image from 'next/image'
 import {
   BannerButtonLink,
   BannerContainer,
   BannerContent,
   BannerImg,
   BannerText,
-} from "./styles";
+} from './styles'
 
-import CarroBannerImg from "../../../public/assets/ImgCarro.png";
-import { Filter } from "./components/Filter";
+import CarroBannerImg from '../../../public/assets/ImgCarro.png'
+import { Filter } from './components/Filter'
 
 export function Banner() {
   return (
@@ -42,5 +42,5 @@ export function Banner() {
 
       <Filter />
     </BannerContainer>
-  );
+  )
 }
