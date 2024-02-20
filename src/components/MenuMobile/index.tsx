@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { X } from 'phosphor-react'
+import { X } from '@phosphor-icons/react/dist/ssr'
 import { useEffect } from 'react'
 import ActiveLink from '../ActiveLink'
 import { MenuContainer, MobileButtonLink } from './styles'

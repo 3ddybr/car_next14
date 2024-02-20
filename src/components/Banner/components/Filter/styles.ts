@@ -13,7 +13,7 @@ export const FilterContainer = styled.div`
   border-radius: 0.7rem;
 
   position: absolute;
-  top: 53rem;
+  top: 45rem;
 
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
 

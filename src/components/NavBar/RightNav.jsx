@@ -3,7 +3,7 @@ import Link from 'next/link'
 import ActiveLink from '../ActiveLink'
 import styled from 'styled-components'
 
-import { MagnifyingGlass } from 'phosphor-react'
+import { MagnifyingGlass } from '@phosphor-icons/react/dist/ssr'
 
 const Ul = styled.ul`
   list-style: none;

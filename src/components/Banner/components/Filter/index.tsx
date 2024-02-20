@@ -1,3 +1,4 @@
+'use client'
 import { FilterButtonLink, FilterContainer, FilterContent } from './styles'
 import { useForm } from 'react-hook-form'
 // import { FormEvent } from "react";

@@ -1,7 +1,11 @@
 import Image from 'next/image'
 import { FooterButtonLink, FooterContainer, FooterContent } from './styles'
 import LogoIng from '../../../public/assets/logo.svg'
-import { FacebookLogo, InstagramLogo, WhatsappLogo } from 'phosphor-react'
+import {
+  FacebookLogo,
+  InstagramLogo,
+  WhatsappLogo,
+} from '@phosphor-icons/react/dist/ssr'
 
 export function Footer() {
   return (

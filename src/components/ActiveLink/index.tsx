@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router'
+'use client'
+import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 import { ReactElement } from 'react'
 interface ActiveLinkProps {
   href: string
@@ -6,7 +8,8 @@ interface ActiveLinkProps {
 }
 
 const ActiveLink = ({ children, href }: ActiveLinkProps) => {
-  const { asPath, push } = useRouter()
+  const { push } = useRouter()
+  const pathname = usePathname()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (e: any) => {
@@ -15,13 +18,13 @@ const ActiveLink = ({ children, href }: ActiveLinkProps) => {
   }
 
   const styles = {
-    color: asPath === href ? 'white' : '#a3acbe',
+    color: pathname === href ? 'white' : '#a3acbe',
   }
 
   return (
-    <a href={href} onClick={handleClick} style={styles}>
+    <Link href={href} onClick={handleClick} style={styles}>
       {children}
-    </a>
+    </Link>
   )
 }
 
