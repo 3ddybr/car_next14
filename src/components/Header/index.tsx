@@ -4,32 +4,34 @@ import Link from 'next/link'
 import { HeaderButtonLink, HeaderContainer, HeaderContent } from './styles'
 
 import LogoIng from '../../../public/assets/logo.svg'
-// import ActiveLink from '../ActiveLink'
+import ActiveLink from '../ActiveLink'
 import { List, MagnifyingGlass } from '@phosphor-icons/react'
+import { usePathname } from 'next/navigation'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function Header({ setMenuIsVisible }: any) {
+  const pathname = usePathname()
   return (
     <HeaderContainer>
       <HeaderContent>
-        <Link href="/">
+        <Link className={`link ${pathname === '/' ? 'active' : ''}`} href="/">
           <Image src={LogoIng} width={120} alt="logo" priority />
         </Link>
         <div>
           <nav>
             <ul>
-              <Link href="/">
+              <ActiveLink href="/">
                 <span>Inicio</span>
-              </Link>
-              <Link href="/veiculos">
+              </ActiveLink>
+              <ActiveLink href="/veiculos">
                 <span>Veículos</span>
-              </Link>
-              <Link href="/empresa">
+              </ActiveLink>
+              <ActiveLink href="/empresa">
                 <span>Empresa</span>
-              </Link>
-              <Link href="/contato">
+              </ActiveLink>
+              <ActiveLink href="/contato">
                 <span>Contato</span>
-              </Link>
+              </ActiveLink>
             </ul>
           </nav>
 
@@ -39,7 +41,10 @@ export function Header({ setMenuIsVisible }: any) {
             weight="bold"
             color="var(--bg)"
           />
-          <Link href="/login">
+          <Link
+            className={`link ${pathname === '/login' ? 'active' : ''}`}
+            href="/login"
+          >
             <HeaderButtonLink>Login</HeaderButtonLink>
           </Link>
         </div>

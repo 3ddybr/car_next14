@@ -86,7 +86,7 @@ export const HeaderContent = styled.div`
   }
 `
 
-export const HeaderButtonLink = styled.a`
+export const HeaderButtonLink = styled.button`
   font-size: 1.6rem;
   color: var(--bg);
   border-radius: 0.3rem;
