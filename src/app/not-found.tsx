@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ErroContainer } from './styles/404'
+import { ErroContainer } from './styles/not-found'
 import { Header } from '@/components/Header'
 
 export default function NotFound() {
