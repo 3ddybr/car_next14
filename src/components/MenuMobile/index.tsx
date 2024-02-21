@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import { X } from '@phosphor-icons/react/dist/ssr'
 import { useEffect } from 'react'
@@ -11,7 +12,7 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible }: any) {
   }, [menuIsVisible])
 
   return (
-    <MenuContainer isVisible={menuIsVisible}>
+    <MenuContainer isvisible={menuIsVisible}>
       <X size={45} onClick={() => setMenuIsVisible(false)} color="white" />
       <div>
         <nav onClick={() => setMenuIsVisible(false)}>
