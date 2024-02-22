@@ -84,7 +84,7 @@ export const FilterButtonLink = styled.a`
 
   transition: 0.3s;
 
-  :hover {
+  &:hover {
     background: var(--information);
   }
 `

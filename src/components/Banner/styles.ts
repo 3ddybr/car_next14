@@ -97,7 +97,7 @@ export const BannerButtonLink = styled.a`
 
   transition: 0.3s;
 
-  :hover {
+  &:hover {
     background: var(--information);
   }
 `

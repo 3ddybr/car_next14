@@ -50,7 +50,7 @@ export const HeaderContent = styled.div`
       font-weight: 700;
       position: relative;
 
-      :hover {
+      &:hover {
         color: var(--white);
         :after {
           content: '';
@@ -98,7 +98,7 @@ export const HeaderButtonLink = styled.button`
 
   transition: 0.3s;
 
-  :hover {
+  &:hover {
     background: var(--information);
   }
 

@@ -76,7 +76,7 @@ export const MenuContainer = styled.section<sectionType>`
     font-weight: 700;
     position: relative;
 
-    :hover {
+    &:hover {
       color: var(--white);
       :after {
         content: '';
@@ -119,7 +119,7 @@ export const MobileButtonLink = styled.button`
 
   transition: 0.3s !important;
 
-  :hover {
+  &:hover {
     background: var(--information) !important;
   }
 `
