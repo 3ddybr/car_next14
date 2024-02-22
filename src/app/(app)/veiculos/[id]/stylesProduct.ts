@@ -322,7 +322,6 @@ export const ProductDetailsInfo = styled.div`
 
 export const ProductCarousel = styled.div`
   /* display: flex; */
-
   h3 {
     font-family: Inter;
     font-weight: 700;
@@ -344,17 +343,17 @@ export const ProductCarousel = styled.div`
 
   overflow: scroll visible;
 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     /* width: 0.6rem; */
     height: 0.6rem;
   }
 
-  ::-webkit-scrollbar-track {
-    background-color: var(--gray-300);
+  &::-webkit-scrollbar-track {
+    background: var(--gray-300);
   }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--blue-400);
+  &::-webkit-scrollbar-thumb {
+    background: var(--blue-400);
     border-radius: 64px;
   }
 
