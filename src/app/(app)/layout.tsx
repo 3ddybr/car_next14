@@ -1,19 +1,19 @@
 'use client'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
-// import { MenuMobile } from '@/components/MenuMobile'
-import { ReactNode } from 'react'
+import { MenuMobile } from '@/components/MenuMobile'
+import { ReactNode, useState } from 'react'
 
 export default function BaseLayout({ children }: { children: ReactNode }) {
-  // const [menuIsVisible, setMenuIsVisible] = useState(false)
+  const [menuIsVisible, setMenuIsVisible] = useState(false)
   return (
     <div>
-      {/* <MenuMobile
+      <MenuMobile
         menuIsVisible={menuIsVisible}
         setMenuIsVisible={setMenuIsVisible}
-      /> */}
-      {/* <Header setMenuIsVisible={setMenuIsVisible} /> */}
-      <Header />
+      />
+      <Header setMenuIsVisible={setMenuIsVisible} />
+      {/* <Header /> */}
 
       {children}
       <Footer />

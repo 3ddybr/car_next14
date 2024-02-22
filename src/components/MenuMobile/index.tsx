@@ -5,14 +5,22 @@ import { useEffect } from 'react'
 import ActiveLink from '../ActiveLink'
 import { MenuContainer, MobileButtonLink } from './styles'
 
+type MenuMobileProps = {
+  menuIsVisible: boolean
+  setMenuIsVisible: (value: boolean) => void
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function MenuMobile({ menuIsVisible, setMenuIsVisible }: any) {
+export function MenuMobile({
+  menuIsVisible,
+  setMenuIsVisible,
+}: MenuMobileProps) {
   useEffect(() => {
     document.body.style.overflow = menuIsVisible ? 'hidden' : 'auto'
   }, [menuIsVisible])
 
   return (
-    <MenuContainer isvisible={menuIsVisible}>
+    <MenuContainer isVisible={menuIsVisible}>
       <X size={45} onClick={() => setMenuIsVisible(false)} color="white" />
       <div>
         <nav onClick={() => setMenuIsVisible(false)}>

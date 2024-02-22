@@ -36,6 +36,13 @@ export const ProductDetails = styled.div`
 export const ProductDetailsSummary = styled.div`
   width: 100%;
   min-width: 67rem;
+  /* border: 1px solid red; */
+
+  img {
+    max-width: 100%;
+    object-fit: cover;
+    /* overflow: hidden; */
+  }
 
   @media (max-width: 1062px) {
     min-width: 100%;

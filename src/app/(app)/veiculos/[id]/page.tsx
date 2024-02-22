@@ -4,10 +4,10 @@
 
 import Image from 'next/image'
 
-import CarroDetalaisImg from '../../../public/assets/carroDetailsBanner.svg'
-import CarroCarrosel1Img from '../../../public/assets/carroscarrocel/Rectangle159.svg'
-import CarroCarrosel2Img from '../../../public/assets/carroscarrocel/Rectangle160.svg'
-import CarroCarrosel3Img from '../../../public/assets/carroscarrocel/Rectangle161.svg'
+import CarroDetalaisImg from '../../../../../public/assets/carroDetailsBanner.svg'
+import CarroCarrosel1Img from '../../../../../public/assets/carroscarrocel/Rectangle159.svg'
+import CarroCarrosel2Img from '../../../../../public/assets/carroscarrocel/Rectangle160.svg'
+import CarroCarrosel3Img from '../../../../../public/assets/carroscarrocel/Rectangle161.svg'
 
 import {
   ProductCarousel,
@@ -24,7 +24,7 @@ import {
 import { Gauge, Swap } from '@phosphor-icons/react'
 import { Cards } from '@/components/Cards'
 
-const Products = () => {
+export default function Product() {
   // const router = useRouter()
   // const { id } = router.query
 
@@ -87,41 +87,6 @@ const Products = () => {
                   priority
                 />
               </div>
-
-              {/* <Carousel autoplay style={{ width: "100" }}>
-                <Image
-                  style={{ width: "100%" }}
-                  src={CarroDetalaisImg}
-                  width={"170"}
-                  height={"112"}
-                  alt=""
-                  priority
-                />
-
-                <Image
-                  src={CarroDetalaisImg}
-                  width={"170"}
-                  height={"112"}
-                  alt=""
-                  priority
-                />
-
-                <Image
-                  src={CarroDetalaisImg}
-                  width={"170"}
-                  height={"112"}
-                  alt=""
-                  priority
-                />
-
-                <Image
-                  src={CarroDetalaisImg}
-                  width={"170"}
-                  height={"112"}
-                  alt=""
-                  priority
-                />
-              </Carousel> */}
             </ProductDetailsCarrousel>
             <ProductsDetailsOpcionais>
               <h2>Resumo do veiculo</h2>
@@ -215,4 +180,3 @@ const Products = () => {
     </ProductContainer>
   )
 }
-export default Products

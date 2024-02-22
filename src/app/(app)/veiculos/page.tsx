@@ -277,7 +277,7 @@ const Veiculos: NextPage = () => {
       <ModalImg
         title={`Insira as imagens`}
         open={open}
-        visible={open}
+        // visible={open}
         // open={open}
         onOk={handleOk}
         confirmLoading={confirmLoading}

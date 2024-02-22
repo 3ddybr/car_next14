@@ -4,7 +4,7 @@ import { CardButtonLink, CardContainer, CardContent } from './styles'
 
 import MustangImg from '../../../public/assets/fordmustang.svg'
 import { Gauge, Swap } from '@phosphor-icons/react/dist/ssr'
-// import Link from 'next/link'
+import Link from 'next/link'
 
 export function Cards() {
   return (
@@ -31,9 +31,9 @@ export function Cards() {
 
           <h2>R$14.0000,00</h2>
         </main>
-        {/* <Link href="/veiculos/pag_teste_detalhes"> */}
-        <CardButtonLink>Detalhes</CardButtonLink>
-        {/* </Link> */}
+        <Link href={`/veiculos/${2}`}>
+          <CardButtonLink>Detalhes</CardButtonLink>
+        </Link>
       </CardContent>
     </CardContainer>
   )

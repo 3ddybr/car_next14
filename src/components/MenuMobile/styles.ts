@@ -1,7 +1,8 @@
+'use client'
 import styled, { css } from 'styled-components'
 
 type sectionType = {
-  isvisible: boolean
+  isVisible: boolean
 }
 
 export const MenuContainer = styled.section<sectionType>`
@@ -90,8 +91,8 @@ export const MenuContainer = styled.section<sectionType>`
     }
   }
 
-  ${({ isvisible }) =>
-    isvisible &&
+  ${({ isVisible }) =>
+    isVisible &&
     css`
       opacity: 1;
       pointer-events: auto;

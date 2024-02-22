@@ -89,7 +89,7 @@ export const CardContent = styled.div`
   }
 `
 
-export const CardButtonLink = styled.a`
+export const CardButtonLink = styled.button`
   width: 100vw;
   height: 100%;
   max-width: 27.5rem;
