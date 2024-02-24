@@ -20,7 +20,7 @@ export function MenuMobile({
   }, [menuIsVisible])
 
   return (
-    <MenuContainer isVisible={menuIsVisible}>
+    <MenuContainer isVisibleMenuMobile={menuIsVisible}>
       <X size={45} onClick={() => setMenuIsVisible(false)} color="white" />
       <div>
         <nav onClick={() => setMenuIsVisible(false)}>

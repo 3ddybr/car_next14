@@ -2,7 +2,7 @@
 import styled, { css } from 'styled-components'
 
 type sectionType = {
-  isVisible: boolean
+  isVisibleMenuMobile: boolean
 }
 
 export const MenuContainer = styled.section<sectionType>`
@@ -91,8 +91,8 @@ export const MenuContainer = styled.section<sectionType>`
     }
   }
 
-  ${({ isVisible }) =>
-    isVisible &&
+  ${({ isVisibleMenuMobile }) =>
+    isVisibleMenuMobile &&
     css`
       opacity: 1;
       pointer-events: auto;

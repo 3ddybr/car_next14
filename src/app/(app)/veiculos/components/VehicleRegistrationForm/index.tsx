@@ -64,7 +64,7 @@ export function VehicleRegistrationForm() {
     formState: { errors },
   } = useFormReturn
 
-  console.log('log de erros veicyulou', errors)
+  // console.log('log de erros veicyulou', errors)
   const handleSubmitForm = (data: FormData) => {
     // event.preventDefault()
     // const vehiclesCol = collection(firestoreDB, 'vehicles')
