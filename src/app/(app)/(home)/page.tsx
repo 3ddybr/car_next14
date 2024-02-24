@@ -1,5 +1,3 @@
-// import type { NextPage } from 'next'
-
 import { Banner } from '@/components/Banner'
 import '../../../utils/traducoesYup'
 import { HomeContainer, HomeContent } from './styles'

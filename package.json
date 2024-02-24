@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@phosphor-icons/react": "^2.0.15",
     "antd": "^5.14.1",
     "firebase": "^10.8.0",

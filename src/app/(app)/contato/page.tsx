@@ -1,4 +1,3 @@
-import { NextPage } from 'next'
 import Link from 'next/link'
 import {
   Car,
@@ -7,7 +6,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 import { ContatoContainer, ContatoContent, SpanLogo } from './styles'
 
-const Contato: NextPage = () => {
+export default function Contato() {
   return (
     <ContatoContainer>
       <ContatoContent>
@@ -49,5 +48,3 @@ const Contato: NextPage = () => {
     </ContatoContainer>
   )
 }
-
-export default Contato

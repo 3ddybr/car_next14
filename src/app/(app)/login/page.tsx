@@ -1,8 +1,6 @@
-import { NextPage } from 'next'
-// import { Lock } from '@phosphor-icons/react'
 import { LoginButtonLink, LoginContainer, LoginContent } from './styles'
 
-const Login: NextPage = () => {
+export default function Login() {
   return (
     <LoginContainer>
       <LoginContent>
@@ -20,5 +18,3 @@ const Login: NextPage = () => {
     </LoginContainer>
   )
 }
-
-export default Login

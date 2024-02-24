@@ -1,6 +1,4 @@
-import { NextPage } from 'next'
-
-const Empresa: NextPage = () => {
+export default function Empresa() {
   return (
     <div>
       <h1>Pagina de Apresentação da Empresa </h1>
@@ -8,5 +6,3 @@ const Empresa: NextPage = () => {
     </div>
   )
 }
-
-export default Empresa
