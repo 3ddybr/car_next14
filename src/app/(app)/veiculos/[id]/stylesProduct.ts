@@ -39,6 +39,8 @@ export const ProductDetailsSummary = styled.div`
   /* border: 1px solid red; */
 
   img {
+    width: auto;
+    height: auto;
     max-width: 100%;
     object-fit: cover;
     /* overflow: hidden; */
