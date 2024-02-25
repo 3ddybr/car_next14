@@ -66,7 +66,7 @@ export const LoginContent = styled.div`
   }
 `
 
-export const LoginButtonLink = styled.a`
+export const LoginButtonLink = styled.button`
   font-size: 1.6rem;
   color: var(--bg);
   border-radius: 0.3rem;
