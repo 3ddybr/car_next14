@@ -13,8 +13,8 @@ export default function Login() {
 
   function handleSignIn(e: { preventDefault: () => void }) {
     e.preventDefault()
-    // signInWithEmailAndPassword(email, password)
-    console.log(email, password, signInWithEmailAndPassword)
+    signInWithEmailAndPassword(email, password)
+    // console.log(email, password, signInWithEmailAndPassword)
   }
 
   if (loading) {
