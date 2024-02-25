@@ -11,14 +11,13 @@ import { dataMarcas } from '@/utils/dataMarcas'
 import { VeiculosContentForm, VeiculosOpcionais } from './styles'
 import { FormProviderBase } from '@/components/FormProviderBase'
 
-// import { useState } from 'react'
+import { useState } from 'react'
 
-// import { firestoreDB } from '../../services/firebase'
-// import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection } from 'firebase/firestore'
+import { firestoreDB } from '@/app/services/firebase'
 
 const schemaFormProduto = yup.object({
   // destaque: yup.boolean(),
-
   title: yup.string().required('Titulo e obrigatório').min(3),
   // img: yup.string().required(),
 
@@ -50,7 +49,7 @@ const schemaFormProduto = yup.object({
 })
 
 export function VehicleRegistrationForm() {
-  // const [refIdDocDB, setRefIdDocDB] = useState('')
+  const [refIdDocDB, setRefIdDocDB] = useState('')
   // const [open, setOpen] = useState(false)
   type FormData = yup.InferType<typeof schemaFormProduto>
 
@@ -65,19 +64,20 @@ export function VehicleRegistrationForm() {
   } = useFormReturn
 
   // console.log('log de erros veicyulou', errors)
-  const handleSubmitForm = (data: FormData) => {
+  const handleSubmitForm = async (data: FormData) => {
     // event.preventDefault()
-    // const vehiclesCol = collection(firestoreDB, 'vehicles')
+    const vehiclesCol = collection(firestoreDB, 'vehicles')
     console.log('Console em data: ', data)
+    console.log('Console em refIdDocDB: ', refIdDocDB)
     try {
-      // const docRef = await addDoc(vehiclesCol, { data })
-      // setRefIdDocDB(docRef.id)
+      const docRef = await addDoc(vehiclesCol, { data })
+      setRefIdDocDB(docRef.id)
+      console.log('Document written with ID cadastrado: ', docRef.id)
       // funcao de abrir o modal
       // showModal()
-      // console.log("Documento escrito com id: ", docRef.id);
     } catch (error) {
       // console.log('Console em data: ', data)
-      // console.error('Error adding document: ', error)
+      console.error('Error adding document: ', error)
     }
   }
   return (
@@ -120,7 +120,8 @@ export function VehicleRegistrationForm() {
             <label>Versão</label>
 
             <input
-              placeholder="Informe a Versão"
+              placeholder="Hath/Sedan/SUV/Pickup"
+              {...register('version_car')}
               id="version_car"
               {...register('version_car')}
             />
