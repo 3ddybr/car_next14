@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { v4 as createId } from 'uuid'
-import { storage } from './firebase'
+import { storage } from '../../services/firebase'
 
 export const useStorage = () => {
   const [progress, setProgress] = useState(0)

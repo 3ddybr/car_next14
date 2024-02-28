@@ -7,7 +7,7 @@ import ModalImgTeste from './components/ModalImgTeste'
 
 import { VehicleRegistrationForm } from './components/VehicleRegistrationForm'
 import { VeiculosContainer } from './styles'
-import { useStorage } from '@/app/services/useStorage'
+import { useStorage } from '@/app/(app)/hooks/useStorage'
 import Image from 'next/image'
 
 export default function Veiculos() {
