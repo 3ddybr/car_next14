@@ -10,6 +10,9 @@ export const VeiculosContentForm = styled.form`
   position: relative;
 
   h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 3.2rem;
     line-height: 3.5rem;
     color: var(--title);

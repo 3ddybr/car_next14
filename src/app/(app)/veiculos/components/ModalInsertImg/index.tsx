@@ -1,24 +1,21 @@
+'use client'
 import { useState } from 'react'
 import { Modal } from 'antd'
+import { ModalImgContainer } from './styles'
 
 interface ModalProps {
   openModal: boolean
-  children: JSX.Element
+  children?: JSX.Element
 }
 
-export function ModalInsertImg({ openModal, children }: ModalProps) {
+export function ModalInsertImg({ openModal }: ModalProps) {
   // const openModalActive = openModal;
   // const [openModalActive, setOpenModalActive] = useState(openModal);
   const [open, setOpen] = useState(openModal)
   const [confirmLoading, setConfirmLoading] = useState(false)
-  const [modalText, setModalText] = useState('Content of the modal')
-
-  // const showModal = () => {
-  //   setOpen(true);
-  // };
 
   const handleOk = () => {
-    setModalText('The modal will be closed after two seconds')
+    // setModalText('The modal will be closed after two seconds')
     setConfirmLoading(true)
     setTimeout(() => {
       setOpen(false)
@@ -33,26 +30,25 @@ export function ModalInsertImg({ openModal, children }: ModalProps) {
 
   return (
     <>
-      {/* <Button type="primary" onClick={showModal}>
-        Open Modal with async logic
-      </Button> */}
-
-      {open === true ? (
+      <ModalImgContainer>
         <Modal
-          title="Title"
+          centered
+          title="Insira as imagens"
           open={open}
           onOk={handleOk}
           confirmLoading={confirmLoading}
           onCancel={handleCancel}
         >
-          <p>{modalText}</p>
+          <>
+            <form method="POST" onSubmit={() => {}}>
+              <input type="file" name="image" />
+              {/* <input type="text" name="name" placeholder="nome do arquivo"/> */}
+              <button>Enviar </button>
+            </form>
+            <p> carregar nini img</p>
+          </>
         </Modal>
-      ) : (
-        ''
-      )}
-      {children}
+      </ModalImgContainer>
     </>
   )
 }
-
-// export default ModalInsertImg;

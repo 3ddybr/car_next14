@@ -1,6 +1,5 @@
 'use client'
 // import { useRouter } from 'next/router'
-// import { Carousel } from 'antd'
 
 import Image from 'next/image'
 

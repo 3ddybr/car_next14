@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -8,13 +9,12 @@ import { SelectTipos } from '@/components/SelectTipos'
 import { dataTiposCarros } from '@/utils/dataTipoCarros'
 import { dataMarcas } from '@/utils/dataMarcas'
 
-import { VeiculosContentForm, VeiculosOpcionais } from './styles'
 import { FormProviderBase } from '@/components/FormProviderBase'
-
-import { useState } from 'react'
 
 import { addDoc, collection } from 'firebase/firestore'
 import { firestoreDB } from '@/app/services/firebase'
+
+import { VeiculosContentForm, VeiculosOpcionais } from './styles'
 
 const schemaFormProduto = yup.object({
   // destaque: yup.boolean(),
@@ -60,6 +60,7 @@ export function VehicleRegistrationForm() {
   const {
     register,
     handleSubmit,
+    // reset,
     formState: { errors },
   } = useFormReturn
 
@@ -73,6 +74,8 @@ export function VehicleRegistrationForm() {
       const docRef = await addDoc(vehiclesCol, { data })
       setRefIdDocDB(docRef.id)
       console.log('Document written with ID cadastrado: ', docRef.id)
+      // reset()  // limpa o formulário
+
       // funcao de abrir o modal
       // showModal()
     } catch (error) {
@@ -83,13 +86,16 @@ export function VehicleRegistrationForm() {
   return (
     <FormProviderBase useFormReturn={useFormReturn}>
       <VeiculosContentForm onSubmit={handleSubmit(handleSubmitForm)}>
-        <h1>Cadastro de veículos</h1>
+        <h1>
+          Cadastro de veículos <small>1/3</small>
+        </h1>
         <div>
           <section>
             <label>
               Titulo <small>(Breve descrição)</small>
             </label>
             <input
+              autoFocus
               id="title"
               {...register('title')}
               placeholder="ex: Gol G3 Power 1.0 16v"
@@ -147,7 +153,7 @@ export function VehicleRegistrationForm() {
             <p>{errors.mileage?.message}</p>
           </section>
           <section>
-            <label>Ano - Modelo / Fabricação</label>
+            <label>Ano ou Modelo</label>
             <input
               type="text"
               placeholder="Informe a Ano/Fabricação"
@@ -240,8 +246,12 @@ export function VehicleRegistrationForm() {
             <p>{errors.description?.message}</p>
           </section>
         </div>
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Proximo</button>
       </VeiculosContentForm>
     </FormProviderBase>
   )
 }
+
+// armazena o id do documento do firebase
+// fazer logica se tiver o id do doc so fazer alteracoes se tiver
+//

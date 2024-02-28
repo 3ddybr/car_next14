@@ -1,45 +1,47 @@
-import { storage } from "./firebase";
-import { ref, listAll, getDownloadURL, uploadBytes } from "firebase/storage";
-import { v4 as createId } from "uuid";
+import { storage } from './firebase'
+import { ref, listAll, getDownloadURL, uploadBytes } from 'firebase/storage'
+import { v4 as createId } from 'uuid'
 
 type imagesP = {
-  name: string;
-  url: string;
-};
-//funcao que retorna uma lista de fotos do firebase......
+  name: string
+  url: string
+}
+// funcao que retorna uma lista de fotos do firebase......
 export const getAll = async () => {
-  let list: imagesP[] = [];
-  const imagesCarsRef = ref(storage, "imagesCars");
-  const imagesList = await listAll(imagesCarsRef);
+  const list: imagesP[] = []
+  const imagesCarsRef = ref(storage, 'imagesCars')
+  const imagesList = await listAll(imagesCarsRef)
 
-  for (let i in imagesList.items) {
-    let imagesUrl = await getDownloadURL(imagesList.items[i]);
+  for (const i in imagesList.items) {
+    const imagesUrl = await getDownloadURL(imagesList.items[i])
     list.push({
       name: imagesList.items[i].name,
       url: imagesUrl,
-    });
+    })
   }
-  return list;
-};
-//fim da funcao ..................
+  return list
+}
+// fim da função ..................
 
-//funcao que envia uma foto para firebase......
-export const insert = async (file: File) => {
-  if (
-    ["image/jpeg", "image/jpg", "image/png", "image/gif"].includes(file.type)
-  ) {
-    let randomName = createId();
-    let newFile = ref(storage, `imagesCars/${randomName}`);
+// função que envia uma foto para firebase......
 
-    let uploadDoc = await uploadBytes(newFile, file);
-    let imagesUrlInsert = await getDownloadURL(uploadDoc.ref);
+export const insertImgFirebase = async (file: File) => {
+  // if (
+  //   ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'].includes(file.type)
+  // ) {
+  const randomName = createId()
+  const newFile = ref(storage, `imagesCars/${randomName}`)
 
-    return { name: uploadDoc.ref.name, url: imagesUrlInsert } as imagesP;
-  } else {
-    return new Error("Tipo de Arquivo de imagem nao permitido.");
-  }
-};
-//fim da funcao ..................
+  const uploadDoc = await uploadBytes(newFile, file)
+  const imagesUrlInsert = await getDownloadURL(uploadDoc.ref)
+
+  console.log('Console função insertImg', imagesUrlInsert)
+  return { name: uploadDoc.ref.name, url: imagesUrlInsert } as imagesP
+  // } else {
+  //   return new Error('Tipo de Arquivo de imagem nao permitido.')
+  // }
+}
+// fim da função ..................
 
 // // Criando uma referência para o Firebase Storage
 // const storageRef = firebase.storage().ref();

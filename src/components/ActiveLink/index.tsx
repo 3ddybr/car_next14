@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { ReactElement } from 'react'
+import { FormEvent, ReactElement } from 'react'
 interface ActiveLinkProps {
   href: string
   children: ReactElement
@@ -12,7 +12,7 @@ const ActiveLink = ({ children, href }: ActiveLinkProps) => {
   const pathname = usePathname()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleClick = (e: any) => {
+  const handleClick = (e: FormEvent) => {
     e.preventDefault()
     push(href)
   }

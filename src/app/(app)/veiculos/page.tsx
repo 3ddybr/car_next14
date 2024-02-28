@@ -1,61 +1,85 @@
 'use client'
-import React, { useState } from 'react'
-// import { ModalInsertImg } from "./components/ModalInsertImg";
+import { ChangeEvent, FormEvent, useState } from 'react'
+
+import ModalImgTeste from './components/ModalImgTeste'
+
+// import { ref, listAll, getDownloadURL, uploadBytes } from 'firebase/storage'
 
 import { VehicleRegistrationForm } from './components/VehicleRegistrationForm'
-
-import { Modal as ModalImg } from 'antd'
 import { VeiculosContainer } from './styles'
+import { useStorage } from '@/app/services/useStorage'
+import Image from 'next/image'
 
 export default function Veiculos() {
-  // Modal Imagens -----------------------------------------------------
   const [open, setOpen] = useState(false)
-  const [confirmLoading, setConfirmLoading] = useState(false)
-  const [modalText, setModalText] = useState('Insira')
 
-  // const showModal = () => {
-  //   setOpen(true)
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const { startUpload, progress, url } = useStorage()
+  // const [progress, setProgress] = useState(0)
+
+  const showModal = () => {
+    setOpen(!open)
+  }
+
+  // const metadata = {
+  //   contentType: 'image/jpeg',
   // }
 
-  const handleOk = () => {
-    setModalText('The modal will be closed after two seconds')
-    setConfirmLoading(true)
-    setTimeout(() => {
-      setOpen(false)
-      setConfirmLoading(false)
-    }, 2000)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // const handleUpload = async () => {
+  // for (let index = 0; index < images.length; index++) {
+  //   const randomName = createId()
+  //   console.log('Console em randomName: ', randomName)
+  //   const file = images[index]
+  //   const storageRef = ref(storage, `imagesCars/${randomName}`)
+  //   await uploadBytes(storageRef, file, metadata)
+  // }
+  // const storageRef = ref(storage, `imagesCars/${randomName}`)
+  // await uploadBytes(storageRef, images, metadata)
+  // }
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0])
+    }
   }
 
-  const handleCancel = () => {
-    console.log('Clicked cancel button')
-    setOpen(false)
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (selectedFile) {
+      startUpload(selectedFile)
+    }
+    setSelectedFile(null)
   }
 
-  // Modal Imagens fim------------------------------------------------------------
-
-  // console.log('referencia do ir na tabela: ', refIdDocDB)
   return (
     <VeiculosContainer>
       <VehicleRegistrationForm />
 
-      {/* <button onClick={() => showModal()}>Chamar</button> */}
+      <button onClick={() => showModal()}>Chamar</button>
 
-      <ModalImg
-        title={`Insira as imagens`}
-        open={open}
-        // visible={open}
-        // open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      >
-        <form method="POST" onSubmit={() => {}}>
-          <input type="file" name="image" />
-          {/* <input type="text" name="name" placeholder="nome do arquivo"/> */}
-          <button>Enviar</button>
-        </form>
-        <p>{modalText}</p>
-      </ModalImg>
+      {open && (
+        <ModalImgTeste isOpenModal={open}>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="file"
+                multiple
+                name="image"
+                onChange={handleFileChange}
+              />
+              <button
+                type="submit"
+                className={`${Boolean(progress) && 'loading'}`}
+                disabled={!selectedFile}
+              >
+                Enviar
+              </button>
+            </form>
+            {url && <Image src={url} alt="as" width={50} height={50} />}
+          </div>
+        </ModalImgTeste>
+      )}
     </VeiculosContainer>
   )
 }
