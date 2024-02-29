@@ -6,9 +6,9 @@ import { storage } from '../../services/firebase'
 export const useStorage = () => {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<Error | null>(null)
-  const [url, setUrl] = useState<string | null>(null)
+  const [url, setUrl] = useState<string[]>([])
 
-  const startUpload = (file: File) => {
+  const startUpload = async (file: File) => {
     if (!file) {
       return
     }
@@ -29,13 +29,13 @@ export const useStorage = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setUrl(downloadURL)
+          setUrl((prevState) => [...prevState, downloadURL])
           setProgress(progress)
         })
       },
     )
   }
-
+  console.log('Console em url useStorage: ', url)
   return {
     progress,
     error,
