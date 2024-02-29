@@ -14,7 +14,6 @@ export default function Login() {
   function handleSignIn(e: FormEvent) {
     e.preventDefault()
     signInWithEmailAndPassword(email, password)
-    // console.log(email, password, signInWithEmailAndPassword)
   }
 
   if (loading) {
@@ -22,6 +21,8 @@ export default function Login() {
   }
   if (user) {
     return console.log(user)
+
+    //! user navegar pra /veiculos
   }
   return (
     <LoginContainer>

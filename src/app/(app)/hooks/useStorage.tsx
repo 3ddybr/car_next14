@@ -35,7 +35,6 @@ export const useStorage = () => {
       },
     )
   }
-  console.log('Console em url useStorage: ', url)
   return {
     progress,
     error,

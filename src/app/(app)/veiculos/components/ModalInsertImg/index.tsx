@@ -9,13 +9,10 @@ interface ModalProps {
 }
 
 export function ModalInsertImg({ openModal }: ModalProps) {
-  // const openModalActive = openModal;
-  // const [openModalActive, setOpenModalActive] = useState(openModal);
   const [open, setOpen] = useState(openModal)
   const [confirmLoading, setConfirmLoading] = useState(false)
 
   const handleOk = () => {
-    // setModalText('The modal will be closed after two seconds')
     setConfirmLoading(true)
     setTimeout(() => {
       setOpen(false)
@@ -42,7 +39,6 @@ export function ModalInsertImg({ openModal }: ModalProps) {
           <>
             <form method="POST" onSubmit={() => {}}>
               <input type="file" name="image" />
-              {/* <input type="text" name="name" placeholder="nome do arquivo"/> */}
               <button>Enviar </button>
             </form>
             <p> carregar nini img</p>

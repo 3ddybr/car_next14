@@ -3,8 +3,6 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 
 import ModalImgTeste from './components/ModalImgTeste'
 
-// import { ref, listAll, getDownloadURL, uploadBytes } from 'firebase/storage'
-
 import { VehicleRegistrationForm } from './components/VehicleRegistrationForm'
 import { VeiculosContainer } from './styles'
 import { useStorage } from '@/app/(app)/hooks/useStorage'
@@ -12,28 +10,16 @@ import Image from 'next/image'
 
 export default function Veiculos() {
   const [open, setOpen] = useState(false)
-
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const { startUpload, progress, url } = useStorage()
-  // const [progress, setProgress] = useState(0)
-  // const [urls, setUrls] = useState<string[]>([])
-
-  // const renderTeste = () => {
-  //   if (url) {
-  //     setUrls([...urls, url])
-  //   }
-  // }
-  // console.log('Console em url: ', url)
-
   const [files, setFiles] = useState<FileList | null>(null)
+  const { startUpload, progress, url } = useStorage()
   const showModal = () => {
     setOpen(!open)
   }
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFiles(e.target.files)
     if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0])
+      setFiles(e.target.files)
+      // setSelectedFile(e.target.files[0])
     }
   }
 
@@ -44,14 +30,8 @@ export default function Veiculos() {
       for (let i = 0; i < files.length; i++) {
         startUpload(files[i])
       }
-
       setFiles(null)
-      setSelectedFile(null)
     }
-    // if (selectedFile) {
-    //   startUpload(selectedFile)
-    // }
-    // setSelectedFile(null)
   }
 
   return (
@@ -73,7 +53,7 @@ export default function Veiculos() {
               <button
                 type="submit"
                 className={`${Boolean(progress) && 'loading'}`}
-                disabled={!selectedFile}
+                disabled={!files}
               >
                 Enviar
               </button>
@@ -94,20 +74,3 @@ export default function Veiculos() {
     </VeiculosContainer>
   )
 }
-
-// const metadata = {
-//   contentType: 'image/jpeg',
-// }
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// const handleUpload = async () => {
-// for (let index = 0; index < images.length; index++) {
-//   const randomName = createId()
-//   console.log('Console em randomName: ', randomName)
-//   const file = images[index]
-//   const storageRef = ref(storage, `imagesCars/${randomName}`)
-//   await uploadBytes(storageRef, file, metadata)
-// }
-// const storageRef = ref(storage, `imagesCars/${randomName}`)
-// await uploadBytes(storageRef, images, metadata)
-// }
