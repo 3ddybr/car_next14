@@ -86,9 +86,7 @@ export function VehicleRegistrationForm() {
   return (
     <FormProviderBase useFormReturn={useFormReturn}>
       <VeiculosContentForm onSubmit={handleSubmit(handleSubmitForm)}>
-        <h1>
-          Cadastro de veículos <small>1/3</small>
-        </h1>
+        {/* <h1>Cadastro de veículos</h1> */}
         <div>
           <section>
             <label>

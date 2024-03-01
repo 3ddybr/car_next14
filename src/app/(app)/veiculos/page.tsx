@@ -1,47 +1,49 @@
 'use client'
-import { ChangeEvent, FormEvent, useState } from 'react'
+// import { ChangeEvent, FormEvent, useState } from 'react'
 
-import ModalImgTeste from './components/ModalImgTeste'
+// import ModalImgTeste from './components/ModalImgTeste'
 
-import { VehicleRegistrationForm } from './components/VehicleRegistrationForm'
+// import { VehicleRegistrationForm } from './components/VehicleRegistrationForm'
 import { VeiculosContainer } from './styles'
-import { useStorage } from '@/app/(app)/hooks/useStorage'
-import Image from 'next/image'
+// import { useStorage } from '@/app/(app)/hooks/useStorage'
+// import Image from 'next/image'
+import { StepsComponent } from './components/StepsComponent'
 
 export default function Veiculos() {
-  const [open, setOpen] = useState(false)
-  const [files, setFiles] = useState<FileList | null>(null)
-  const { startUpload, progress, url } = useStorage()
-  const showModal = () => {
-    setOpen(!open)
-  }
+  // const [open, setOpen] = useState(false)
+  // const [files, setFiles] = useState<FileList | null>(null)
+  // const { startUpload, progress, url } = useStorage()
+  // const showModal = () => {
+  //   setOpen(!open)
+  // }
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFiles(e.target.files)
-      // setSelectedFile(e.target.files[0])
-    }
-  }
+  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     setFiles(e.target.files)
+  //     // setSelectedFile(e.target.files[0])
+  //   }
+  // }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault()
 
-    if (files) {
-      for (let i = 0; i < files.length; i++) {
-        startUpload(files[i])
-      }
-      setFiles(null)
-    }
-  }
+  //   if (files) {
+  //     for (let i = 0; i < files.length; i++) {
+  //       startUpload(files[i])
+  //     }
+  //     setFiles(null)
+  //   }
+  // }
 
   return (
     <VeiculosContainer>
-      <VehicleRegistrationForm />
+      <StepsComponent />
+      {/* <VehicleRegistrationForm /> */}
 
-      <button onClick={() => showModal()}>Chamar</button>
+      {/* <button onClick={() => showModal()}>Chamar</button> */}
 
-      {open && (
-        <ModalImgTeste isOpenModal={open}>
+      {/* {open && (
+        <ModalImgTeste isOpenModal={true}>
           <div>
             <form onSubmit={handleSubmit}>
               <input
@@ -70,7 +72,7 @@ export default function Veiculos() {
               ))}
           </div>
         </ModalImgTeste>
-      )}
+      )} */}
     </VeiculosContainer>
   )
 }
