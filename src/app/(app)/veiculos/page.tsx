@@ -3,11 +3,11 @@
 
 // import ModalImgTeste from './components/ModalImgTeste'
 
-// import { VehicleRegistrationForm } from './components/VehicleRegistrationForm'
+import { VehicleRegistrationForm } from './components/VehicleRegistrationForm'
 import { VeiculosContainer } from './styles'
 // import { useStorage } from '@/app/(app)/hooks/useStorage'
 // import Image from 'next/image'
-import { StepsComponent } from './components/StepsComponent'
+// import { StepsComponent } from './components/StepsComponent'
 
 export default function Veiculos() {
   // const [open, setOpen] = useState(false)
@@ -37,8 +37,8 @@ export default function Veiculos() {
 
   return (
     <VeiculosContainer>
-      <StepsComponent />
-      {/* <VehicleRegistrationForm /> */}
+      {/* <StepsComponent /> */}
+      <VehicleRegistrationForm />
 
       {/* <button onClick={() => showModal()}>Chamar</button> */}
 

@@ -10,11 +10,13 @@ export const StepsInsertImgContainer = styled.div`
 
   width: 100%;
   height: 100%;
-  min-height: 50rem;
+  min-height: 16rem;
+
+  padding: 1rem;
 
   /* border: 1px solid blue; */
 
-  form {
+  /* form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,29 +24,30 @@ export const StepsInsertImgContainer = styled.div`
     width: 100%;
     height: auto;
 
-    padding-bottom: 1rem;
+    padding-bottom: 1rem; */
 
-    button,
-    input[type='file']::file-selector-button {
-      font-size: 1rem;
-      color: var(--bg);
-      border-radius: 0.3rem;
-      background: var(--blue-400);
-      border: 0;
+  input[type='file']::file-selector-button {
+    font-size: 1rem;
+    color: var(--bg);
+    border-radius: 0.3rem;
+    background: var(--blue-400);
+    border: 0;
 
-      padding: 4px 8px 4px 8px;
+    padding: 4px 8px 4px 8px;
 
-      transition: 0.3s;
+    transition: 0.3s;
 
-      &:hover {
-        background: var(--information);
-      }
-    }
+    position: relative;
 
-    input {
-      padding: 0 1rem;
+    &:hover {
+      background: var(--information);
     }
   }
+
+  input {
+    padding: 0 1rem;
+  }
+  /* } */
 `
 
 export const StepsInsertImgContentImage = styled.div`
@@ -58,16 +61,18 @@ export const StepsInsertImgContentImage = styled.div`
 
   padding: 1rem;
   gap: 1rem;
+
+  /* border: 1px solid blue; */
 `
 
 export const StepsInsertImgMiniature = styled.div`
   display: flex;
-  align-items: end;
+  align-items: flex-end !important;
   justify-content: center;
 
   flex-direction: column;
 
-  /* border: 1px solid green; */
+  /* border: 1px solid blue; */
 
   img {
     width: 16rem;

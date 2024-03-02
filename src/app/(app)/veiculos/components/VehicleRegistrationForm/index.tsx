@@ -15,6 +15,7 @@ import { addDoc, collection } from 'firebase/firestore'
 import { firestoreDB } from '@/app/services/firebase'
 
 import { VeiculosContentForm, VeiculosOpcionais } from './styles'
+import { StepsInsertImg } from '../StepsInsertImg'
 
 const schemaFormProduto = yup.object({
   // destaque: yup.boolean(),
@@ -75,9 +76,6 @@ export function VehicleRegistrationForm() {
       setRefIdDocDB(docRef.id)
       console.log('Document written with ID cadastrado: ', docRef.id)
       // reset()  // limpa o formulário
-
-      // funcao de abrir o modal
-      // showModal()
     } catch (error) {
       // console.log('Console em data: ', data)
       console.error('Error adding document: ', error)
@@ -86,7 +84,7 @@ export function VehicleRegistrationForm() {
   return (
     <FormProviderBase useFormReturn={useFormReturn}>
       <VeiculosContentForm onSubmit={handleSubmit(handleSubmitForm)}>
-        {/* <h1>Cadastro de veículos</h1> */}
+        <h1>Cadastro de veículos</h1>
         <div>
           <section>
             <label>
@@ -226,6 +224,9 @@ export function VehicleRegistrationForm() {
             <label>AR CONDICIONADO</label>
           </section>
         </VeiculosOpcionais>
+        <section>
+          <StepsInsertImg />
+        </section>
 
         <div>
           <section>
@@ -244,7 +245,7 @@ export function VehicleRegistrationForm() {
             <p>{errors.description?.message}</p>
           </section>
         </div>
-        <button type="submit">Proximo</button>
+        <button type="submit">Cadastrar</button>
       </VeiculosContentForm>
     </FormProviderBase>
   )
