@@ -15,7 +15,7 @@ import { X } from '@phosphor-icons/react/dist/ssr'
 
 export function StepsInsertImg() {
   // const [files, setFiles] = useState<FileList | null>(null)
-  const { startUpload, progress, url, deleteImg, refImage } = useStorage()
+  const { startUpload, progress, deleteImg, refImage } = useStorage()
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       // setFiles(e.target.files)
@@ -44,7 +44,7 @@ export function StepsInsertImg() {
         {refImage &&
           refImage.map((refImage) => (
             <StepsInsertImgMiniature key={refImage.imgRefFullPath}>
-              {progress ? (
+              {progress < 100 ? (
                 // <input
                 //   type="range"
                 //   // defaultValue={progress}
@@ -71,7 +71,7 @@ export function StepsInsertImg() {
                     src={refImage.imgUrl}
                     width={150}
                     height={150}
-                    alt={url.length.toString()}
+                    alt={refImage.imgUrl}
                     priority
                   />
                 </>

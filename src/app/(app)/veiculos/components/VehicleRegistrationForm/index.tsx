@@ -16,6 +16,7 @@ import { firestoreDB } from '@/app/services/firebase'
 
 import { VeiculosContentForm, VeiculosOpcionais } from './styles'
 import { StepsInsertImg } from '../StepsInsertImg'
+import { useStorage } from '@/app/(app)/hooks/useStorage'
 
 const schemaFormProduto = yup.object({
   // destaque: yup.boolean(),
@@ -52,6 +53,7 @@ const schemaFormProduto = yup.object({
 export function VehicleRegistrationForm() {
   const [refIdDocDB, setRefIdDocDB] = useState('')
   // const [open, setOpen] = useState(false)
+  const { refImage, setRefImage } = useStorage()
   type FormData = yup.InferType<typeof schemaFormProduto>
 
   const useFormReturn = useForm<FormData>({
@@ -61,26 +63,39 @@ export function VehicleRegistrationForm() {
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
   } = useFormReturn
 
-  // console.log('log de erros veicyulou', errors)
   const handleSubmitForm = async (data: FormData) => {
     // event.preventDefault()
     const vehiclesCol = collection(firestoreDB, 'vehicles')
-    console.log('Console em data: ', data)
-    console.log('Console em refIdDocDB: ', refIdDocDB)
+    // if refImage === "" return mensagem de erro
+    if (refImage.length === 0) {
+      alert('Insira pelo menos uma imagem')
+      return
+    }
     try {
-      const docRef = await addDoc(vehiclesCol, { data })
+      const docRef = await addDoc(vehiclesCol, { ...data, refImage })
       setRefIdDocDB(docRef.id)
-      console.log('Document written with ID cadastrado: ', docRef.id)
-      // reset()  // limpa o formulário
+      console.log(
+        'Document written with ID cadastrado: ',
+        docRef.id,
+        refIdDocDB,
+      )
+      setRefImage([])
+      reset() // limpa o formulário
+      alert('Cadastrado com sucesso!')
     } catch (error) {
       // console.log('Console em data: ', data)
-      console.error('Error adding document: ', error)
+      console.error(
+        'Error adding document: (Erro ao cadastrar Veiculo) ',
+        error,
+      )
     }
   }
+
+  // console.log('log de refIdDocDB', refIdDocDB)
   return (
     <FormProviderBase useFormReturn={useFormReturn}>
       <VeiculosContentForm onSubmit={handleSubmit(handleSubmitForm)}>

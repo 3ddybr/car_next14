@@ -1,4 +1,5 @@
-import { useState } from 'react'
+'use client'
+import { ReactNode, createContext, useContext, useState } from 'react'
 import {
   deleteObject,
   getDownloadURL,
@@ -13,13 +14,31 @@ type ImageProps = {
   imgUrl: string
 }
 
-export const useStorage = () => {
+interface StorageProviderProps {
+  // quando as props vao receber qualquer conteúdo do tipo react usa-se ReactNode
+  children: ReactNode
+}
+
+interface StorageContextProps {
+  progress: number
+  error: Error | null
+  startUpload: (file: File) => void
+  deleteImg: (refImg: string | undefined) => void
+  refImage: ImageProps[]
+  setRefImage: (refImage: ImageProps[]) => void
+}
+
+const StorageContext = createContext<StorageContextProps>(
+  {} as StorageContextProps,
+)
+
+export const StorageProvider = ({ children }: StorageProviderProps) => {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<Error | null>(null)
-  const [url, setUrl] = useState<string[]>([])
+  // const [url, setUrl] = useState<string[]>([])
   const [refImage, setRefImage] = useState<ImageProps[] | []>([])
 
-  const startUpload = async (file: File) => {
+  function startUpload(file: File) {
     if (!file) {
       return
     }
@@ -32,9 +51,9 @@ export const useStorage = () => {
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        setProgress(progress)
-        console.log('Upload is ' + progress + '% done')
+        const progress1 =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        setProgress(progress1)
       },
       (error) => {
         setError(error)
@@ -45,10 +64,15 @@ export const useStorage = () => {
             imgRefFullPath: uploadTask.snapshot.ref.fullPath,
             imgUrl: downloadURL,
           }
-          setUrl((prevState) => [...prevState, downloadURL])
+          const progress2 =
+            (uploadTask.snapshot.bytesTransferred /
+              uploadTask.snapshot.totalBytes) *
+            100
+          // setUrl((prevState) => [...prevState, downloadURL])
           setRefImage((prevState) => [...prevState, refImg])
-          setProgress(progress)
-          // console.log(refImg)
+          setProgress(progress2)
+          // console.log('Upload is ' + progress + '% done')
+          // console.log(uploadTask.snapshot.)
         })
       },
     )
@@ -71,12 +95,16 @@ export const useStorage = () => {
       })
   }
 
-  return {
-    progress,
-    error,
-    url,
-    refImage,
-    startUpload,
-    deleteImg,
-  }
+  return (
+    <StorageContext.Provider
+      value={{ progress, error, startUpload, deleteImg, refImage, setRefImage }}
+    >
+      {children}
+    </StorageContext.Provider>
+  )
+}
+
+export function useStorage() {
+  const context = useContext(StorageContext)
+  return context
 }
