@@ -35,7 +35,7 @@ interface StorageContextProps {
   setRefImage: (refImage: ImageProps[]) => void
   getAllVehicles: () => void
   docAllVehicles: DocumentData[] | []
-  getLimitVehicles: () => void
+  getLimitVehicles: (quant: number) => void
   docLimitVehicles: DocumentData[] | []
 }
 
@@ -117,9 +117,10 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
     setDocAllVehicles(vehiclesList)
   }
 
-  const getLimitVehicles = async () => {
+  // get limit Vehicles
+  const getLimitVehicles = async (quant: number) => {
     const vehiclesCol = collection(firestoreDB, 'vehicles')
-    const q = query(vehiclesCol, limit(3))
+    const q = query(vehiclesCol, limit(quant))
     const vehiclesSnapshot = await getDocs(q)
     const vehiclesList = vehiclesSnapshot.docs.map((doc) => doc.data())
     setDocLimitVehicles(vehiclesList)

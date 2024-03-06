@@ -46,8 +46,10 @@ export const CardContent = styled.div`
   }
 
   h1 {
+    max-height: 5rem;
     font-size: 1.8rem;
     padding: 0.8rem 1.3rem;
+    overflow: hidden;
   }
 
   main {

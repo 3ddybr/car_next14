@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     // getAllVehicles()
-    getLimitVehicles()
+    getLimitVehicles(3)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
