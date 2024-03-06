@@ -7,7 +7,8 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage'
 import { v4 as createId } from 'uuid'
-import { storage } from '../../services/firebase'
+import { firestoreDB, storage } from '../../services/firebase'
+import { DocumentData, collection, getDocs } from 'firebase/firestore'
 
 type ImageProps = {
   imgRefFullPath: string
@@ -26,6 +27,8 @@ interface StorageContextProps {
   deleteImg: (refImg: string | undefined) => void
   refImage: ImageProps[]
   setRefImage: (refImage: ImageProps[]) => void
+  getAllVehicles: () => void
+  docAllVehicles: DocumentData[] | []
 }
 
 const StorageContext = createContext<StorageContextProps>(
@@ -35,8 +38,8 @@ const StorageContext = createContext<StorageContextProps>(
 export const StorageProvider = ({ children }: StorageProviderProps) => {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<Error | null>(null)
-  // const [url, setUrl] = useState<string[]>([])
   const [refImage, setRefImage] = useState<ImageProps[] | []>([])
+  const [docAllVehicles, setDocAllVehicles] = useState<DocumentData[] | []>([])
 
   function startUpload(file: File) {
     if (!file) {
@@ -95,9 +98,25 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
       })
   }
 
+  const getAllVehicles = async () => {
+    const vehiclesCol = collection(firestoreDB, 'vehicles')
+    const vehiclesSnapshot = await getDocs(vehiclesCol)
+    const vehiclesList = vehiclesSnapshot.docs.map((doc) => doc.data())
+    setDocAllVehicles(vehiclesList)
+  }
+
   return (
     <StorageContext.Provider
-      value={{ progress, error, startUpload, deleteImg, refImage, setRefImage }}
+      value={{
+        progress,
+        error,
+        startUpload,
+        deleteImg,
+        refImage,
+        setRefImage,
+        getAllVehicles,
+        docAllVehicles,
+      }}
     >
       {children}
     </StorageContext.Provider>
