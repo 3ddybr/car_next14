@@ -8,18 +8,19 @@ import { Cards } from '@/components/Cards'
 import { HomeContainer, HomeContent } from './styles'
 
 export default function Home() {
-  const { docAllVehicles, getAllVehicles } = useStorage()
-  console.log('retorno de todos os carros', docAllVehicles)
+  const { docLimitVehicles, getLimitVehicles } = useStorage()
+  // console.log('retorno de todos os carros', docAllVehicles)
 
   useEffect(() => {
-    getAllVehicles()
+    // getAllVehicles()
+    getLimitVehicles()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <HomeContainer>
       <Banner />
       <HomeContent>
-        {docAllVehicles.map((doc) => {
+        {docLimitVehicles.map((doc) => {
           return (
             <Cards
               key={doc.title}

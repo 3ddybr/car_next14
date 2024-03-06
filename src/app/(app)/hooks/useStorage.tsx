@@ -8,7 +8,13 @@ import {
 } from 'firebase/storage'
 import { v4 as createId } from 'uuid'
 import { firestoreDB, storage } from '../../services/firebase'
-import { DocumentData, collection, getDocs } from 'firebase/firestore'
+import {
+  DocumentData,
+  collection,
+  getDocs,
+  limit,
+  query,
+} from 'firebase/firestore'
 
 type ImageProps = {
   imgRefFullPath: string
@@ -29,6 +35,8 @@ interface StorageContextProps {
   setRefImage: (refImage: ImageProps[]) => void
   getAllVehicles: () => void
   docAllVehicles: DocumentData[] | []
+  getLimitVehicles: () => void
+  docLimitVehicles: DocumentData[] | []
 }
 
 const StorageContext = createContext<StorageContextProps>(
@@ -40,7 +48,10 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
   const [error, setError] = useState<Error | null>(null)
   const [refImage, setRefImage] = useState<ImageProps[] | []>([])
   const [docAllVehicles, setDocAllVehicles] = useState<DocumentData[] | []>([])
-
+  const [docLimitVehicles, setDocLimitVehicles] = useState<DocumentData[] | []>(
+    [],
+  )
+  // Insert images to firebase and get the image url.
   function startUpload(file: File) {
     if (!file) {
       return
@@ -80,7 +91,7 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
       },
     )
   }
-  // console.log('ImagRef', progress)
+  // deletar imagem da lista de images e do firebase
   const deleteImg = async (refImg: string | undefined) => {
     const imgRef = ref(storage, refImg)
 
@@ -98,11 +109,20 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
       })
   }
 
+  // getAll Vehicles
   const getAllVehicles = async () => {
     const vehiclesCol = collection(firestoreDB, 'vehicles')
     const vehiclesSnapshot = await getDocs(vehiclesCol)
     const vehiclesList = vehiclesSnapshot.docs.map((doc) => doc.data())
     setDocAllVehicles(vehiclesList)
+  }
+
+  const getLimitVehicles = async () => {
+    const vehiclesCol = collection(firestoreDB, 'vehicles')
+    const q = query(vehiclesCol, limit(3))
+    const vehiclesSnapshot = await getDocs(q)
+    const vehiclesList = vehiclesSnapshot.docs.map((doc) => doc.data())
+    setDocLimitVehicles(vehiclesList)
   }
 
   return (
@@ -116,6 +136,8 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
         setRefImage,
         getAllVehicles,
         docAllVehicles,
+        docLimitVehicles,
+        getLimitVehicles,
       }}
     >
       {children}

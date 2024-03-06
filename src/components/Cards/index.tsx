@@ -2,21 +2,14 @@
 import Image from 'next/image'
 import { CardButtonLink, CardContainer, CardContent } from './styles'
 
-// import MustangImg from '../../../public/assets/fordmustang.svg'
 import { Gauge, Swap } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 
 interface CardProps {
   title: string
-  // img: string
-  // type?: string
-  // brand: string
-  // model?: string
   year: string
   mileage: string
-  // color_car: string
   price: string
-  // description: string
   imgUrl: string
 }
 export function Cards({ title, mileage, price, imgUrl, year }: CardProps) {
