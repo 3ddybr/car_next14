@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Button, message, Steps } from 'antd'
 import { StepsContainer, StepsContent } from './styles'
-import { VehicleRegistrationForm } from '../VehicleRegistrationForm'
-import { StepsInsertImg } from '../StepsInsertImg'
+import { VehicleRegistrationForm } from '../../veiculos/components/VehicleRegistrationForm'
+import { InsertImg } from '../../veiculos/components/InsertImg'
 
 const steps = [
   {
@@ -11,7 +11,7 @@ const steps = [
   },
   {
     title: 'Inserir Imagens',
-    content: <StepsInsertImg />,
+    content: <InsertImg />,
   },
   {
     title: 'Conclusão',

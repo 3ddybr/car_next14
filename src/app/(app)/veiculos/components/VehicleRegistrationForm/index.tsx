@@ -15,8 +15,8 @@ import { addDoc, collection } from 'firebase/firestore'
 import { firestoreDB } from '@/app/services/firebase'
 
 import { VeiculosContentForm, VeiculosOpcionais } from './styles'
-import { StepsInsertImg } from '../StepsInsertImg'
-import { useStorage } from '@/app/(app)/hooks/useStorage'
+import { InsertImg } from '../InsertImg'
+import { useFirebase } from '@/app/(app)/hooks/useFirebase'
 
 const schemaFormProduto = yup.object({
   // destaque: yup.boolean(),
@@ -53,7 +53,7 @@ const schemaFormProduto = yup.object({
 export function VehicleRegistrationForm() {
   const [refIdDocDB, setRefIdDocDB] = useState('')
   // const [open, setOpen] = useState(false)
-  const { refImage, setRefImage } = useStorage()
+  const { refImage, setRefImage } = useFirebase()
   type FormData = yup.InferType<typeof schemaFormProduto>
 
   const useFormReturn = useForm<FormData>({
@@ -240,7 +240,7 @@ export function VehicleRegistrationForm() {
           </section>
         </VeiculosOpcionais>
         <section>
-          <StepsInsertImg />
+          <InsertImg />
         </section>
 
         <div>

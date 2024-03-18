@@ -11,10 +11,13 @@ import { firestoreDB, storage } from '../../services/firebase'
 import {
   DocumentData,
   collection,
+  doc,
+  getDoc,
   getDocs,
   limit,
   query,
 } from 'firebase/firestore'
+import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
 
 type ImageProps = {
   imgRefFullPath: string
@@ -36,7 +39,8 @@ interface StorageContextProps {
   getAllVehicles: () => void
   docAllVehicles: DocumentData[] | []
   getLimitVehicles: (quant: number) => void
-  docLimitVehicles: DocumentData[] | []
+  docLimitVehicles: VehiclesDataProps[]
+  getVehicles: (id: string) => void
 }
 
 const StorageContext = createContext<StorageContextProps>(
@@ -47,8 +51,8 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<Error | null>(null)
   const [refImage, setRefImage] = useState<ImageProps[] | []>([])
-  const [docAllVehicles, setDocAllVehicles] = useState<DocumentData[] | []>([])
-  const [docLimitVehicles, setDocLimitVehicles] = useState<DocumentData[] | []>(
+  const [docAllVehicles, setDocAllVehicles] = useState<DocumentData[]>([])
+  const [docLimitVehicles, setDocLimitVehicles] = useState<VehiclesDataProps[]>(
     [],
   )
   // Insert images to firebase and get the image url.
@@ -117,12 +121,31 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
     setDocAllVehicles(vehiclesList)
   }
 
+  // getVehicles por id
+  const getVehicles = async (id: string) => {
+    const vehiclesCol = doc(firestoreDB, 'vehicles', id)
+    const vehiclesSnapshot = await getDoc(vehiclesCol)
+    const data = { ...vehiclesSnapshot.data(), id: vehiclesSnapshot.id }
+    return data as VehiclesDataProps
+    // setDocAllVehicles(data as VehiclesDataProps)
+  }
+
   // get limit Vehicles
   const getLimitVehicles = async (quant: number) => {
     const vehiclesCol = collection(firestoreDB, 'vehicles')
     const q = query(vehiclesCol, limit(quant))
     const vehiclesSnapshot = await getDocs(q)
-    const vehiclesList = vehiclesSnapshot.docs.map((doc) => doc.data())
+    const vehiclesList = vehiclesSnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    })) as VehiclesDataProps[]
+
+    // const arraysJuntos = vehiclesList.map((array) => {
+    //   return array.reduce((obj1, obj2) => {
+    //     return { ...obj1, ...obj2 }
+    //   }, {})
+    // }) as VehiclesDataProps[]
+
     setDocLimitVehicles(vehiclesList)
   }
 
@@ -139,6 +162,7 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
         docAllVehicles,
         docLimitVehicles,
         getLimitVehicles,
+        getVehicles,
       }}
     >
       {children}

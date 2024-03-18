@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 // import { Inter } from 'next/font/google'
 import { GlobalStyle } from './styles/global'
 import StyledComponentsRegistry from '../../lib/registry'
-import { StorageProvider } from './(app)/hooks/useStorage'
+import { StorageProvider } from './(app)/contexts/useStorage'
 
 // const inter = Inter({ subsets: ['latin'] })
 

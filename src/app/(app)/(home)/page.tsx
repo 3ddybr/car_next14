@@ -1,19 +1,27 @@
 'use client'
-import { useStorage } from '@/app/(app)/hooks/useStorage'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Banner } from '@/components/Banner'
 import '../../../utils/traducoesYup'
 import { Cards } from '@/components/Cards'
 
 import { HomeContainer, HomeContent } from './styles'
+import { useFirebase } from '../hooks/useFirebase'
+import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
 
 export default function Home() {
-  const { docLimitVehicles, getLimitVehicles } = useStorage()
-  // console.log('retorno de todos os carros', docAllVehicles)
+  const { getLimitVehicles } = useFirebase()
+  const [docLimitVehicles, setDocLimitVehicles] = useState<VehiclesDataProps[]>(
+    [],
+  )
+  // console.log('retorno de todos os carros', docLimitVehicles)
 
   useEffect(() => {
-    // getAllVehicles()
-    getLimitVehicles(3)
+    async function LimitVehicles() {
+      const limitVehicles = await getLimitVehicles(4)
+
+      setDocLimitVehicles(limitVehicles)
+    }
+    LimitVehicles()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
@@ -29,6 +37,7 @@ export default function Home() {
               imgUrl={doc.refImage[0].imgUrl}
               title={doc.title}
               year={doc.year_model}
+              id={doc.id}
             />
           )
         })}
