@@ -9,28 +9,21 @@ import {
   StepsInsertImgMiniature,
 } from './styles'
 
-// import CarImg from '../../../../../../public/assets/ImgCarro.png'
 import { X } from '@phosphor-icons/react/dist/ssr'
 import { useFirebase } from '@/app/(app)/hooks/useFirebase'
 
 export function InsertImg() {
-  // const [files, setFiles] = useState<FileList | null>(null)
-
   const { startUpload, refImage, progress, deleteImg } = useFirebase()
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      // setFiles(e.target.files)
       const fileTeste = e.target.files
       if (fileTeste) {
         for (let i = 0; i < fileTeste.length; i++) {
           startUpload(fileTeste[i])
         }
-        // setFiles(null)
-        // e.target.value = ''
       }
     }
   }
-  // console.log('files', files, setFiles)
   return (
     <StepsInsertImgContainer>
       <input

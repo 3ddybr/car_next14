@@ -7,8 +7,6 @@ interface TypeCar {
 interface PropsSelect {
   dataOptions: TypeCar[]
   name: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // control?: Control<any>
 }
 
 export function SelectTipos({ dataOptions, name }: PropsSelect) {

@@ -100,7 +100,6 @@ export function useFirebase() {
     const vehiclesSnapshot = await getDoc(vehiclesCol)
     const data = { ...vehiclesSnapshot.data(), id: vehiclesSnapshot.id }
     return data as VehiclesDataProps
-    // setDocAllVehicles(data as VehiclesDataProps)
   }
 
   // get limit Vehicles

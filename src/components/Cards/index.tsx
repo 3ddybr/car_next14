@@ -4,7 +4,6 @@ import { CardButtonLink, CardContainer, CardContent } from './styles'
 
 import { Gauge, Swap } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
-// import { useRouter, useSearchParams } from 'next/navigation'
 
 interface CardProps {
   id: string
@@ -15,11 +14,6 @@ interface CardProps {
   imgUrl: string
 }
 export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
-  // const router = useRouter()
-  // const searchParams = useSearchParams()
-
-  // const query = searchParams.get('q')
-
   return (
     <CardContainer>
       <CardContent>
@@ -45,7 +39,6 @@ export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
 
           <h2>R${price}</h2>
         </main>
-        {/* <Link href={`/veiculos/${2}`}> */}
         <Link href={`/veiculos/${id}`}>
           <CardButtonLink>Detalhes</CardButtonLink>
         </Link>

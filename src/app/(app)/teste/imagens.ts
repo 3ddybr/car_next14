@@ -1,4 +1,4 @@
-import { storage } from './firebase'
+import { storage } from '../../services/firebase'
 import { ref, listAll, getDownloadURL, uploadBytes } from 'firebase/storage'
 import { v4 as createId } from 'uuid'
 

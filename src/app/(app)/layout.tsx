@@ -13,7 +13,6 @@ export default function BaseLayout({ children }: { children: ReactNode }) {
         setMenuIsVisible={setMenuIsVisible}
       />
       <Header setMenuIsVisible={setMenuIsVisible} />
-      {/* <Header /> */}
 
       {children}
       <Footer />

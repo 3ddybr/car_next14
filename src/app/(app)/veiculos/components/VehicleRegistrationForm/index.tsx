@@ -52,7 +52,6 @@ const schemaFormProduto = yup.object({
 
 export function VehicleRegistrationForm() {
   const [refIdDocDB, setRefIdDocDB] = useState('')
-  // const [open, setOpen] = useState(false)
   const { refImage, setRefImage } = useFirebase()
   type FormData = yup.InferType<typeof schemaFormProduto>
 
@@ -68,9 +67,7 @@ export function VehicleRegistrationForm() {
   } = useFormReturn
 
   const handleSubmitForm = async (data: FormData) => {
-    // event.preventDefault()
     const vehiclesCol = collection(firestoreDB, 'vehicles')
-    // if refImage === "" return mensagem de erro
     if (refImage.length === 0) {
       alert('Insira pelo menos uma imagem')
       return
@@ -87,7 +84,6 @@ export function VehicleRegistrationForm() {
       reset() // limpa o formulário
       alert('Cadastrado com sucesso!')
     } catch (error) {
-      // console.log('Console em data: ', data)
       console.error(
         'Error adding document: (Erro ao cadastrar Veiculo) ',
         error,
@@ -95,7 +91,6 @@ export function VehicleRegistrationForm() {
     }
   }
 
-  // console.log('log de refIdDocDB', refIdDocDB)
   return (
     <FormProviderBase useFormReturn={useFormReturn}>
       <VeiculosContentForm onSubmit={handleSubmit(handleSubmitForm)}>
@@ -115,22 +110,12 @@ export function VehicleRegistrationForm() {
           </section>
           <section>
             <label>Tipo</label>
-            <SelectTipos
-              dataOptions={dataTiposCarros}
-              // control={control}
-              // {...register('type')}
-              name="type"
-            />
+            <SelectTipos dataOptions={dataTiposCarros} name="type" />
             <p>{errors.type?.message}</p>
           </section>
           <section>
             <label>Marcas</label>
-            <SelectTipos
-              dataOptions={dataMarcas}
-              // control={control}
-              // {...register('brand')}
-              name="brand"
-            />
+            <SelectTipos dataOptions={dataMarcas} name="brand" />
             <p>{errors.brand?.message}</p>
           </section>
           <section>
@@ -265,7 +250,3 @@ export function VehicleRegistrationForm() {
     </FormProviderBase>
   )
 }
-
-// armazena o id do documento do firebase
-// fazer logica se tiver o id do doc so fazer alteracoes se tiver
-//

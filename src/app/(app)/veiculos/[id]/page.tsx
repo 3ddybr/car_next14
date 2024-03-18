@@ -37,10 +37,6 @@ export default function Product({ params }: ProductProps) {
   )
   const [car, setCar] = useState<VehiclesDataProps>({} as VehiclesDataProps)
 
-  // const vehicleFilter = docLimitVehicles.filter((doc) => doc.id === params.id)
-
-  // console.log('docAllVehicles', vehicleFilter)
-
   useEffect(() => {
     async function VehicleData() {
       const VehicleData = await getVehicle(params.id)
@@ -53,13 +49,11 @@ export default function Product({ params }: ProductProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id])
 
-  // console.log(car)
   if (!car) {
     return null
   }
   return (
     <ProductContainer>
-      {/* {vehicleFilter.map((car) => ( */}
       <>
         <ProductContent key={car.id}>
           <ProductDetails>
@@ -210,7 +204,6 @@ export default function Product({ params }: ProductProps) {
           </ProductCarousel>
         </ProductContent>
       </>
-      {/* ))} */}
     </ProductContainer>
   )
 }
