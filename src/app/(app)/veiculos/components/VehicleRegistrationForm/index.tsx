@@ -11,12 +11,10 @@ import { dataMarcas } from '@/utils/dataMarcas'
 
 import { FormProviderBase } from '@/components/FormProviderBase'
 
-import { addDoc, collection } from 'firebase/firestore'
-import { firestoreDB } from '@/app/services/firebase'
-
 import { VeiculosContentForm, VeiculosOpcionais } from './styles'
 import { InsertImg } from '../InsertImg'
 import { useFirebase } from '@/app/(app)/hooks/useFirebase'
+import { useStorage } from '@/app/(app)/contexts/useStorage'
 
 const schemaFormProduto = yup.object({
   // destaque: yup.boolean(),
@@ -51,9 +49,12 @@ const schemaFormProduto = yup.object({
 })
 
 export function VehicleRegistrationForm() {
+  const { InsertVehicle } = useFirebase()
+  const { refImage } = useStorage()
   const [refIdDocDB, setRefIdDocDB] = useState('')
-  const { refImage, setRefImage } = useFirebase()
   type FormData = yup.InferType<typeof schemaFormProduto>
+
+  console.log('ref Img dentro de Form', refImage)
 
   const useFormReturn = useForm<FormData>({
     resolver: yupResolver(schemaFormProduto),
@@ -67,20 +68,15 @@ export function VehicleRegistrationForm() {
   } = useFormReturn
 
   const handleSubmitForm = async (data: FormData) => {
-    const vehiclesCol = collection(firestoreDB, 'vehicles')
     if (refImage.length === 0) {
       alert('Insira pelo menos uma imagem')
       return
     }
     try {
-      const docRef = await addDoc(vehiclesCol, { ...data, refImage })
-      setRefIdDocDB(docRef.id)
-      console.log(
-        'Document written with ID cadastrado: ',
-        docRef.id,
-        refIdDocDB,
-      )
-      setRefImage([])
+      const ref = await InsertVehicle({ ...data, refImage })
+      setRefIdDocDB(ref.id)
+      console.log('Document written with ID cadastrado: ', ref.id, refIdDocDB)
+
       reset() // limpa o formulário
       alert('Cadastrado com sucesso!')
     } catch (error) {

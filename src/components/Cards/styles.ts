@@ -43,6 +43,10 @@ export const CardContent = styled.div`
       top: 2.01%;
       bottom: 91.96%;
     }
+
+    img {
+      object-fit: cover;
+    }
   }
 
   h1 {

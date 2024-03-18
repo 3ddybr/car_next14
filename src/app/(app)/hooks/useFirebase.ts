@@ -8,6 +8,7 @@ import {
 import { v4 as createId } from 'uuid'
 import { firestoreDB, storage } from '../../services/firebase'
 import {
+  addDoc,
   collection,
   doc,
   getDoc,
@@ -16,6 +17,7 @@ import {
   query,
 } from 'firebase/firestore'
 import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
+import { useStorage } from '../contexts/useStorage'
 
 type ImageProps = {
   imgRefFullPath: string
@@ -24,7 +26,8 @@ type ImageProps = {
 
 export function useFirebase() {
   const [progress, setProgress] = useState(0)
-  const [refImage, setRefImage] = useState<ImageProps[]>([])
+  // const [] = useState<ImageProps[]>([])
+  const { refImage, updateRefImages, deleteImgContext } = useStorage()
 
   // Insert images to firebase and get the image url.
   function startUpload(file: File) {
@@ -50,7 +53,7 @@ export function useFirebase() {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const refImg = {
+          const refImg: ImageProps = {
             imgRefFullPath: uploadTask.snapshot.ref.fullPath,
             imgUrl: downloadURL,
           }
@@ -58,11 +61,11 @@ export function useFirebase() {
             (uploadTask.snapshot.bytesTransferred /
               uploadTask.snapshot.totalBytes) *
             100
-          setRefImage((prevState) => [...prevState, refImg])
+          // setRefImage((prevState: ImageProps[]) => [...prevState, refImg])
+          // setRefImage((prevState) => [...prevState, refImg])
+          updateRefImages(refImg)
+          // setRefImage(refImg)
           setProgress(progress2)
-          // return refImg as ImageProps
-          // console.log('Upload is ' + progress + '% done')
-          // console.log(uploadTask.snapshot.)
         })
       },
     )
@@ -78,7 +81,7 @@ export function useFirebase() {
           (ref) => ref.imgRefFullPath !== refImg,
         )
 
-        setRefImage(refFilter)
+        deleteImgContext(refFilter)
         // File deleted successfully
       })
       .catch((error: Error) => {
@@ -121,14 +124,21 @@ export function useFirebase() {
     return vehiclesList
   }
 
+  const InsertVehicle = async (data: object) => {
+    const vehiclesCol = collection(firestoreDB, 'vehicles')
+    const docRef = await addDoc(vehiclesCol, { ...data, refImage })
+
+    return docRef
+  }
+
   return {
     refImage,
-    setRefImage,
     startUpload,
     progress,
     deleteImg,
     getAllVehicles,
     getVehicle,
     getLimitVehicles,
+    InsertVehicle,
   }
 }

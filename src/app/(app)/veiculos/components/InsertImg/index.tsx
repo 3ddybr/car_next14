@@ -11,9 +11,11 @@ import {
 
 import { X } from '@phosphor-icons/react/dist/ssr'
 import { useFirebase } from '@/app/(app)/hooks/useFirebase'
+import { useStorage } from '@/app/(app)/contexts/useStorage'
 
 export function InsertImg() {
-  const { startUpload, refImage, progress, deleteImg } = useFirebase()
+  const { startUpload, progress, deleteImg } = useFirebase()
+  const { refImage } = useStorage()
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const fileTeste = e.target.files
@@ -24,6 +26,7 @@ export function InsertImg() {
       }
     }
   }
+
   return (
     <StepsInsertImgContainer>
       <input
