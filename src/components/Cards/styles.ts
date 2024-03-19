@@ -19,10 +19,15 @@ export const CardContent = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  /* border: 1px solid blue; */
-
   header {
     position: relative;
+
+    display: flex;
+    align-items: top;
+    justify-content: center;
+
+    width: 100%;
+    height: 13.5rem;
 
     p {
       display: flex;
@@ -45,7 +50,12 @@ export const CardContent = styled.div`
     }
 
     img {
-      object-fit: cover;
+      /* border: 1px solid blue; */
+      width: 100% !important;
+      min-width: 30rem;
+      max-height: 15rem !important;
+      min-height: 15rem;
+      object-fit: cover !important;
     }
   }
 

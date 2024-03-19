@@ -1,9 +1,12 @@
 // 'use client'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { CardButtonLink, CardContainer, CardContent } from './styles'
 
 import { Gauge, Swap } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
+
+import ImageGallery from 'react-image-gallery'
+import 'react-image-gallery/styles/css/image-gallery.css'
 
 interface CardProps {
   id: string
@@ -11,14 +14,28 @@ interface CardProps {
   year: string
   mileage: string
   price: string
-  imgUrl: string
+  imgUrl: { original: string; thumbnail: string }[]
 }
 export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
   return (
     <CardContainer>
       <CardContent>
         <header>
-          <Image src={imgUrl} width={300} height={180} quality={100} alt="" />
+          {/* <div> */}
+          <ImageGallery
+            items={imgUrl}
+            showThumbnails={false}
+            showFullscreenButton={false}
+            showPlayButton={false}
+            showNav={false}
+            showBullets={true}
+            autoPlay={true}
+            infinite={true}
+            slideInterval={3000}
+          />
+          {/* </div> */}
+
+          {/* <Image src={imgUrl} width={300} height={180} quality={100} alt="" /> */}
 
           <p>{year}</p>
         </header>

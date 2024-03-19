@@ -193,7 +193,10 @@ export default function Product({ params }: ProductProps) {
                     key={doc.title}
                     mileage={doc.mileage}
                     price={doc.price}
-                    imgUrl={doc.refImage[0].imgUrl}
+                    imgUrl={doc.refImage.map((i) => ({
+                      original: i.imgUrl,
+                      thumbnail: i.imgUrl,
+                    }))}
                     title={doc.title}
                     year={doc.year_model}
                     id={doc.id}
