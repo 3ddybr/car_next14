@@ -38,14 +38,6 @@ export const ProductDetailsSummary = styled.div`
   min-width: 67rem;
   /* border: 1px solid red; */
 
-  img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    object-fit: cover;
-    /* overflow: hidden; */
-  }
-
   @media (max-width: 1062px) {
     min-width: 100%;
   }
@@ -69,22 +61,56 @@ export const ProductDetailsCarrousel = styled.div`
   width: 100%;
   max-width: 67rem;
 
-  margin-top: 1.5rem;
-  padding-bottom: 6.5rem;
-  border-bottom: 1px solid var(--gray-200);
-
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 0.8rem;
 
-  overflow: hidden;
+  //image destaque
+  .image-gallery-content:not(.fullscreen)
+    .image-gallery-slide
+    .image-gallery-image {
+    width: 100vw;
+    max-width: 67rem;
+    height: 35rem;
 
-  div {
-    min-width: 17rem;
-    min-height: 11.2rem;
-    border-radius: 0.5rem;
+    object-fit: cover;
   }
+
+  //thumbnail container image pequena
+  .image-gallery-thumbnails-wrapper {
+    /* border: 1px solid blue; */
+    width: 100%;
+    max-width: 67rem;
+  }
+
+  //thumbnail image
+  .image-gallery-thumbnail img {
+    object-position: center;
+    object-fit: cover;
+    height: 80px;
+  }
+
+  /* div {
+    width: 100%;
+
+    nav {
+      width: 100% !important;
+      button {
+        span {
+   
+          img {
+            width: 100%;
+            min-height: 11rem;
+            max-height: 11rem;
+
+            border: 1px solid green;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  } */
 
   @media (max-width: 800px) {
     display: flex;

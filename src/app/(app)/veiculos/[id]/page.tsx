@@ -1,12 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-import Image from 'next/image'
-
-import CarroDetalaisImg from '../../../../../public/assets/carroDetailsBanner.svg'
-import CarroCarrosel1Img from '../../../../../public/assets/carroscarrocel/Rectangle159.svg'
-import CarroCarrosel2Img from '../../../../../public/assets/carroscarrocel/Rectangle160.svg'
-import CarroCarrosel3Img from '../../../../../public/assets/carroscarrocel/Rectangle161.svg'
+import ImageGallery from 'react-image-gallery'
+import 'react-image-gallery/styles/css/image-gallery.css'
 
 import {
   ProductCarousel,
@@ -58,60 +54,25 @@ export default function Product({ params }: ProductProps) {
         <ProductContent key={car.id}>
           <ProductDetails>
             <ProductDetailsSummary>
-              <Image
-                src={CarroDetalaisImg}
-                width={670}
-                height={358}
-                alt=""
-                priority
-              />
-
               <ProductDetailsCarrousel>
-                <div>
-                  <Image
-                    src={CarroCarrosel1Img}
-                    width={170}
-                    height={112}
-                    alt=""
-                    priority
-                  />
-                </div>
-                <div>
-                  <Image
-                    src={CarroCarrosel2Img}
-                    width={170}
-                    height={112}
-                    alt=""
-                    priority
-                  />
-                </div>
-                <div>
-                  <Image
-                    src={CarroCarrosel3Img}
-                    width={170}
-                    height={112}
-                    alt=""
-                    priority
-                  />
-                </div>
-                <div>
-                  <Image
-                    src={CarroCarrosel3Img}
-                    width={170}
-                    height={112}
-                    alt=""
-                    priority
-                  />
-                </div>
-                <div>
-                  <Image
-                    src={CarroCarrosel3Img}
-                    width={170}
-                    height={112}
-                    alt=""
-                    priority
-                  />
-                </div>
+                <ImageGallery
+                  items={
+                    !car.refImage
+                      ? []
+                      : car.refImage.map((i) => ({
+                          original: i.imgUrl,
+                          thumbnail: i.imgUrl,
+                        }))
+                  }
+                  showThumbnails={true}
+                  showFullscreenButton={true}
+                  showPlayButton={false}
+                  showNav={false}
+                  showBullets={true}
+                  autoPlay={true}
+                  infinite={true}
+                  slideInterval={3000}
+                />
               </ProductDetailsCarrousel>
               <ProductsDetailsOpcionais>
                 <h2>Resumo do veiculo</h2>
@@ -165,7 +126,7 @@ export default function Product({ params }: ProductProps) {
                     {parseInt(car.price).toLocaleString('pt-BR', {
                       style: 'currency',
                       currency: 'BRL',
-                      minimumFractionDigits: 0,
+                      minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })}
                   </h1>

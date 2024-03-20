@@ -21,7 +21,6 @@ export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
     <CardContainer>
       <CardContent>
         <header>
-          {/* <div> */}
           <ImageGallery
             items={imgUrl}
             showThumbnails={false}
@@ -33,7 +32,6 @@ export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
             infinite={true}
             slideInterval={3000}
           />
-          {/* </div> */}
 
           {/* <Image src={imgUrl} width={300} height={180} quality={100} alt="" /> */}
 
@@ -54,7 +52,14 @@ export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
             </p>
           </div>
 
-          <h2>R${price}</h2>
+          <h2>
+            {parseInt(price).toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </h2>
         </main>
         <Link href={`/veiculos/${id}`}>
           <CardButtonLink>Detalhes</CardButtonLink>

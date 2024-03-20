@@ -48,14 +48,14 @@ export const CardContent = styled.div`
       top: 2.01%;
       bottom: 91.96%;
     }
+    .image-gallery-content:not(.fullscreen)
+      .image-gallery-slide
+      .image-gallery-image {
+      width: 100vw;
+      max-width: 30rem;
+      height: 15rem;
 
-    img {
-      /* border: 1px solid blue; */
-      width: 100% !important;
-      min-width: 30rem;
-      max-height: 15rem !important;
-      min-height: 15rem;
-      object-fit: cover !important;
+      object-fit: cover;
     }
   }
 
