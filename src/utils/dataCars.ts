@@ -245,7 +245,7 @@ export const dataFuelCars = [
 export const dataVersionCars = [
   {
     value: '',
-    label: 'Buggy',
+    label: 'Versão',
   },
   {
     value: '1',
@@ -274,5 +274,9 @@ export const dataVersionCars = [
   {
     value: '7',
     label: 'Van/Utilitário',
+  },
+  {
+    value: '8',
+    label: 'Buggy',
   },
 ]

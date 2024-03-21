@@ -7,7 +7,12 @@ import * as yup from 'yup'
 
 import { SelectTipos } from '@/components/SelectTipos'
 import { dataTypesVehicles } from '@/utils/dataTypesVehicles'
-import { dataBrandCars } from '@/utils/dataCars'
+import {
+  dataBrandCars,
+  dataExchangeCars,
+  dataFuelCars,
+  dataVersionCars,
+} from '@/utils/dataCars'
 
 import { FormProviderBase } from '@/components/FormProviderBase'
 
@@ -15,6 +20,7 @@ import { VeiculosContentForm, VeiculosOpcionais } from './styles'
 import { InsertImg } from '../InsertImg'
 import { useFirebase } from '@/app/(app)/hooks/useFirebase'
 import { useStorage } from '@/app/(app)/contexts/useStorage'
+import { dataCores } from '@/utils/dataColors'
 
 const schemaFormProduto = yup.object({
   // destaque: yup.boolean(),
@@ -34,6 +40,8 @@ const schemaFormProduto = yup.object({
   mileage: yup.string().required('Quilometragem e obrigatório'), // quilometragem
   // power: yup.string().required("Potencia e obrigatório"), //potencia
   color_car: yup.string().required('Cor e obrigatório'),
+  exchange_car: yup.string().required('Câmbio obrigatório'),
+  fuel_car: yup.string().required('Tipo de Combustível obrigatório'),
   price: yup.string().required('Preço e obrigatório'),
   description: yup.string().required('Descrição e obrigatório'),
 
@@ -45,6 +53,10 @@ const schemaFormProduto = yup.object({
     vidro_eletrico: yup.boolean(),
     direcao_hidraulica: yup.boolean(),
     ar_condicionado: yup.boolean(),
+    camera_re: yup.boolean(),
+    sensor_re: yup.boolean(),
+    kit_gas: yup.boolean(),
+    armored: yup.boolean(), // blindado
   }),
 })
 
@@ -116,13 +128,7 @@ export function VehicleRegistrationForm() {
           </section>
           <section>
             <label>Versão</label>
-
-            <input
-              placeholder="Hath/Sedan/SUV/Pickup"
-              {...register('version_car')}
-              id="version_car"
-              {...register('version_car')}
-            />
+            <SelectTipos dataOptions={dataVersionCars} name="version_car" />
             <p>{errors.version_car?.message}</p>
           </section>
           <section>
@@ -156,12 +162,18 @@ export function VehicleRegistrationForm() {
           </section>
           <section>
             <label>Cor</label>
-            <input
-              placeholder="Informe a Cor no DOC"
-              {...register('color_car')}
-              id="color_car"
-            />
+            <SelectTipos dataOptions={dataCores} name="color" />
             <p>{errors.color_car?.message}</p>
+          </section>
+          <section>
+            <label>Câmbio</label>
+            <SelectTipos dataOptions={dataExchangeCars} name="exchange_car" />
+            <p>{errors.exchange_car?.message}</p>
+          </section>
+          <section>
+            <label>Combustível</label>
+            <SelectTipos dataOptions={dataFuelCars} name="fuel_car" />
+            <p>{errors.fuel_car?.message}</p>
           </section>
         </div>
 
@@ -218,6 +230,39 @@ export function VehicleRegistrationForm() {
               {...register('opcionais.ar_condicionado')}
             />
             <label>AR CONDICIONADO</label>
+          </section>
+
+          <section>
+            <input
+              type="checkbox"
+              id="camera_re"
+              {...register('opcionais.ar_condicionado')}
+            />
+            <label>CAMERA DE RE</label>
+          </section>
+          <section>
+            <input
+              type="checkbox"
+              id="sensor_re"
+              {...register('opcionais.ar_condicionado')}
+            />
+            <label>SENSOR DE RE</label>
+          </section>
+          <section>
+            <input
+              type="checkbox"
+              id="kit_gas"
+              {...register('opcionais.ar_condicionado')}
+            />
+            <label>KIT GAS</label>
+          </section>
+          <section>
+            <input
+              type="checkbox"
+              id="armored"
+              {...register('opcionais.ar_condicionado')}
+            />
+            <label>BLINDADO</label>
           </section>
         </VeiculosOpcionais>
         <section>

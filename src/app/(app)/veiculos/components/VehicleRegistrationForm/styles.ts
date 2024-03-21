@@ -60,6 +60,10 @@ export const VeiculosContentForm = styled.form`
         padding: 0.8rem;
       }
 
+      p {
+        color: var(--important);
+      }
+
       input,
       textarea::placeholder {
         color: var(--text-off);
