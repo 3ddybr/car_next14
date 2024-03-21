@@ -6,8 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 import { SelectTipos } from '@/components/SelectTipos'
-import { dataTiposCarros } from '@/utils/dataTipoCarros'
-import { dataMarcas } from '@/utils/dataMarcas'
+import { dataTypesVehicles } from '@/utils/dataTypesVehicles'
+import { dataBrandCars } from '@/utils/dataCars'
 
 import { FormProviderBase } from '@/components/FormProviderBase'
 
@@ -54,7 +54,7 @@ export function VehicleRegistrationForm() {
   const [refIdDocDB, setRefIdDocDB] = useState('')
   type FormData = yup.InferType<typeof schemaFormProduto>
 
-  console.log('ref Img dentro de Form', refImage)
+  // console.log('ref Img dentro de Form', refImage)
 
   const useFormReturn = useForm<FormData>({
     resolver: yupResolver(schemaFormProduto),
@@ -106,12 +106,12 @@ export function VehicleRegistrationForm() {
           </section>
           <section>
             <label>Tipo</label>
-            <SelectTipos dataOptions={dataTiposCarros} name="type" />
+            <SelectTipos dataOptions={dataTypesVehicles} name="type" />
             <p>{errors.type?.message}</p>
           </section>
           <section>
             <label>Marcas</label>
-            <SelectTipos dataOptions={dataMarcas} name="brand" />
+            <SelectTipos dataOptions={dataBrandCars} name="brand" />
             <p>{errors.brand?.message}</p>
           </section>
           <section>

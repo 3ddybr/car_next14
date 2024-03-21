@@ -2,8 +2,8 @@
 import { FilterButtonLink, FilterContainer, FilterContent } from './styles'
 import { useForm } from 'react-hook-form'
 import { SelectTipos } from '../../../SelectTipos'
-import { dataTiposCarros } from '@/utils/dataTipoCarros'
-import { dataMarcas } from '@/utils/dataMarcas'
+import { dataTypesVehicles } from '@/utils/dataTypesVehicles'
+import { dataBrandCars } from '@/utils/dataCars'
 import { FormProviderBase } from '@/components/FormProviderBase'
 
 export function Filter() {
@@ -20,11 +20,11 @@ export function Filter() {
         <FilterContent onSubmit={handleSubmit(handleSubmitForm)}>
           <section>
             <label>Marca</label>
-            <SelectTipos dataOptions={dataTiposCarros} name="type" />
+            <SelectTipos dataOptions={dataTypesVehicles} name="type" />
           </section>
           <section>
             <label>Tipo</label>
-            <SelectTipos dataOptions={dataMarcas} name="brand" />
+            <SelectTipos dataOptions={dataBrandCars} name="brand" />
           </section>
           <FilterButtonLink type="submit">Pesquisar</FilterButtonLink>
         </FilterContent>

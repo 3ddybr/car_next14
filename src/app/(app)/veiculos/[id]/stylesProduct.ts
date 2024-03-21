@@ -231,6 +231,8 @@ export const ProductDetailsInfo = styled.div`
       font-size: 3.2rem;
       line-height: 3.9rem;
 
+      padding-top: 2rem;
+
       color: var(--title);
     }
     header {

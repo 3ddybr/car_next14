@@ -1,4 +1,5 @@
-export const dataMarcas = [
+// Marcas
+export const dataBrandCars = [
   {
     value: '',
     label: 'Marca',
@@ -182,5 +183,96 @@ export const dataMarcas = [
   {
     value: '48',
     label: 'IVECO',
+  },
+]
+
+// cambio
+export const dataExchangeCars = [
+  {
+    value: '',
+    label: 'Câmbio',
+  },
+  {
+    value: '1',
+    label: 'Manual',
+  },
+  {
+    value: '2',
+    label: 'Automático',
+  },
+  {
+    value: '3',
+    label: 'Semi-Automático',
+  },
+  {
+    value: '4',
+    label: 'Automatizado',
+  },
+]
+
+// combustível
+export const dataFuelCars = [
+  {
+    value: '',
+    label: 'Combustível',
+  },
+  {
+    value: '1',
+    label: 'Gasolina',
+  },
+  {
+    value: '2',
+    label: 'Álcool',
+  },
+  {
+    value: '3',
+    label: 'Flex',
+  },
+  {
+    value: '4',
+    label: 'Diesel',
+  },
+  {
+    value: '4',
+    label: 'Híbrido',
+  },
+  {
+    value: '4',
+    label: 'Elétrico',
+  },
+]
+
+export const dataVersionCars = [
+  {
+    value: '',
+    label: 'Buggy',
+  },
+  {
+    value: '1',
+    label: 'Caminhão Leve',
+  },
+  {
+    value: '2',
+    label: 'Conversível',
+  },
+  {
+    value: '3',
+    label: 'Hatch',
+  },
+  {
+    value: '4',
+    label: 'Pick-up',
+  },
+  {
+    value: '5',
+    label: 'Sedã',
+  },
+  {
+    value: '6',
+    label: 'SUV',
+  },
+  {
+    value: '7',
+    label: 'Van/Utilitário',
   },
 ]

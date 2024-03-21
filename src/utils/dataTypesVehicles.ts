@@ -1,4 +1,4 @@
-export const dataTiposCarros = [
+export const dataTypesVehicles = [
   {
     value: '',
     label: 'Tipo',
@@ -13,6 +13,14 @@ export const dataTiposCarros = [
   },
   {
     value: '3',
+    label: 'Caminhões',
+  },
+  {
+    value: '4',
+    label: 'Ônibus',
+  },
+  {
+    value: '5',
     label: 'Outros',
   },
 ]
