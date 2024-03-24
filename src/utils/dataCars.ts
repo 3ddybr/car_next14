@@ -233,11 +233,11 @@ export const dataFuelCars = [
     label: 'Diesel',
   },
   {
-    value: '4',
+    value: '5',
     label: 'Híbrido',
   },
   {
-    value: '4',
+    value: '6',
     label: 'Elétrico',
   },
 ]

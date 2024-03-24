@@ -21,11 +21,10 @@ import { InsertImg } from '../InsertImg'
 import { useFirebase } from '@/app/(app)/hooks/useFirebase'
 import { useStorage } from '@/app/(app)/contexts/useStorage'
 import { dataCores } from '@/utils/dataColors'
+import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
 
 const schemaFormProduto = yup.object({
-  // destaque: yup.boolean(),
   title: yup.string().required('Titulo e obrigatório').min(3),
-  // img: yup.string().required(),
 
   type: yup.string().required('Tipo de veículos obrigatório'),
   brand: yup.string().required('Marca de veículos obrigatório'), // marca
@@ -38,7 +37,6 @@ const schemaFormProduto = yup.object({
     .max(4)
     .required('Ano Modelo/ Fabricação e obrigatório'), // ano/model
   mileage: yup.string().required('Quilometragem e obrigatório'), // quilometragem
-  // power: yup.string().required("Potencia e obrigatório"), //potencia
   color_car: yup.string().required('Cor e obrigatório'),
   exchange_car: yup.string().required('Câmbio obrigatório'),
   fuel_car: yup.string().required('Tipo de Combustível obrigatório'),
@@ -62,11 +60,14 @@ const schemaFormProduto = yup.object({
 
 export function VehicleRegistrationForm() {
   const { InsertVehicle } = useFirebase()
-  const { refImage } = useStorage()
+  const { refImage, vehicle } = useStorage()
   const [refIdDocDB, setRefIdDocDB] = useState('')
   type FormData = yup.InferType<typeof schemaFormProduto>
 
-  // console.log('ref Img dentro de Form', refImage)
+  // console.log(vehicle)
+  if (vehicle) {
+    console.log(vehicle.refImage)
+  }
 
   const useFormReturn = useForm<FormData>({
     resolver: yupResolver(schemaFormProduto),
@@ -105,30 +106,43 @@ export function VehicleRegistrationForm() {
         <h1>Cadastro de veículos</h1>
         <div>
           <section>
+            <label>Tipo</label>
+            <SelectTipos
+              dataOptions={dataTypesVehicles}
+              name="type"
+              value={vehicle.type}
+            />
+            <p>{errors.type?.message}</p>
+          </section>
+          <section>
             <label>
               Titulo <small>(Breve descrição)</small>
             </label>
             <input
-              autoFocus
               id="title"
               {...register('title')}
               placeholder="ex: Gol G3 Power 1.0 16v"
+              defaultValue={vehicle.title}
             />
             <p>{errors.title?.message}</p>
           </section>
-          <section>
-            <label>Tipo</label>
-            <SelectTipos dataOptions={dataTypesVehicles} name="type" />
-            <p>{errors.type?.message}</p>
-          </section>
+
           <section>
             <label>Marcas</label>
-            <SelectTipos dataOptions={dataBrandCars} name="brand" />
+            <SelectTipos
+              dataOptions={dataBrandCars}
+              name="brand"
+              value={vehicle.brand}
+            />
             <p>{errors.brand?.message}</p>
           </section>
           <section>
             <label>Versão</label>
-            <SelectTipos dataOptions={dataVersionCars} name="version_car" />
+            <SelectTipos
+              dataOptions={dataVersionCars}
+              name="version_car"
+              value={vehicle?.version_car}
+            />
             <p>{errors.version_car?.message}</p>
           </section>
           <section>
@@ -137,6 +151,7 @@ export function VehicleRegistrationForm() {
               placeholder="Informe a Modelo"
               {...register('model')}
               id="model"
+              defaultValue={vehicle.model}
             />
             <p>{errors.model?.message}</p>
           </section>
@@ -147,6 +162,7 @@ export function VehicleRegistrationForm() {
               placeholder="Informe a km"
               {...register('mileage')}
               id="mileage"
+              defaultValue={vehicle.mileage}
             />
             <p>{errors.mileage?.message}</p>
           </section>
@@ -157,22 +173,35 @@ export function VehicleRegistrationForm() {
               placeholder="Informe a Ano/Fabricação"
               {...register('year_model')}
               id="year_model"
+              defaultValue={vehicle?.year_model}
             />
             <p>{errors.year_model?.message}</p>
           </section>
           <section>
             <label>Cor</label>
-            <SelectTipos dataOptions={dataCores} name="color" />
+            <SelectTipos
+              dataOptions={dataCores}
+              name="color_car"
+              value={vehicle?.color_car}
+            />
             <p>{errors.color_car?.message}</p>
           </section>
           <section>
             <label>Câmbio</label>
-            <SelectTipos dataOptions={dataExchangeCars} name="exchange_car" />
+            <SelectTipos
+              dataOptions={dataExchangeCars}
+              name="exchange_car"
+              value={vehicle.exchange_car}
+            />
             <p>{errors.exchange_car?.message}</p>
           </section>
           <section>
             <label>Combustível</label>
-            <SelectTipos dataOptions={dataFuelCars} name="fuel_car" />
+            <SelectTipos
+              dataOptions={dataFuelCars}
+              name="fuel_car"
+              value={vehicle.fuel_car}
+            />
             <p>{errors.fuel_car?.message}</p>
           </section>
         </div>
@@ -184,11 +213,17 @@ export function VehicleRegistrationForm() {
               type="checkbox"
               id="alarme"
               {...register('opcionais.alarme')}
+              defaultChecked={vehicle.opcionais?.alarme}
             />
             <label>ALARME</label>
           </section>
           <section>
-            <input type="checkbox" id="som" {...register('opcionais.som')} />
+            <input
+              type="checkbox"
+              id="som"
+              {...register('opcionais.som')}
+              defaultChecked={vehicle.opcionais?.som}
+            />
             <label>SOM</label>
           </section>
           <section>
@@ -196,6 +231,7 @@ export function VehicleRegistrationForm() {
               type="checkbox"
               id="airbag"
               {...register('opcionais.airbag')}
+              defaultChecked={vehicle.opcionais?.airbag}
             />
             <label>AIR BAG</label>
           </section>
@@ -204,6 +240,7 @@ export function VehicleRegistrationForm() {
               type="checkbox"
               id="trava-eletrica"
               {...register('opcionais.trava_eletrica')}
+              defaultChecked={vehicle.opcionais?.trava_eletrica}
             />
             <label>TRAVA ELÉTRICA</label>
           </section>
@@ -212,6 +249,7 @@ export function VehicleRegistrationForm() {
               type="checkbox"
               id="vidro_eletrico"
               {...register('opcionais.vidro_eletrico')}
+              defaultChecked={vehicle.opcionais?.vidro_eletrico}
             />
             <label>VIDRO ELÉTRICO</label>
           </section>
@@ -220,6 +258,7 @@ export function VehicleRegistrationForm() {
               type="checkbox"
               id="direcao_hidraulica"
               {...register('opcionais.direcao_hidraulica')}
+              defaultChecked={vehicle.opcionais?.direcao_hidraulica}
             />
             <label>DIREÇÃO HIDRÁULICA</label>
           </section>
@@ -228,6 +267,7 @@ export function VehicleRegistrationForm() {
               type="checkbox"
               id="ar_condicionado"
               {...register('opcionais.ar_condicionado')}
+              defaultChecked={vehicle.opcionais?.ar_condicionado}
             />
             <label>AR CONDICIONADO</label>
           </section>
@@ -236,7 +276,8 @@ export function VehicleRegistrationForm() {
             <input
               type="checkbox"
               id="camera_re"
-              {...register('opcionais.ar_condicionado')}
+              {...register('opcionais.camera_re')}
+              defaultChecked={vehicle.opcionais?.camera_re}
             />
             <label>CAMERA DE RE</label>
           </section>
@@ -244,7 +285,8 @@ export function VehicleRegistrationForm() {
             <input
               type="checkbox"
               id="sensor_re"
-              {...register('opcionais.ar_condicionado')}
+              {...register('opcionais.sensor_re')}
+              defaultChecked={vehicle.opcionais?.sensor_re}
             />
             <label>SENSOR DE RE</label>
           </section>
@@ -252,7 +294,8 @@ export function VehicleRegistrationForm() {
             <input
               type="checkbox"
               id="kit_gas"
-              {...register('opcionais.ar_condicionado')}
+              {...register('opcionais.kit_gas')}
+              defaultChecked={vehicle.opcionais?.kit_gas}
             />
             <label>KIT GAS</label>
           </section>
@@ -260,7 +303,8 @@ export function VehicleRegistrationForm() {
             <input
               type="checkbox"
               id="armored"
-              {...register('opcionais.ar_condicionado')}
+              {...register('opcionais.armored')}
+              defaultChecked={vehicle.opcionais?.armored}
             />
             <label>BLINDADO</label>
           </section>
@@ -272,7 +316,12 @@ export function VehicleRegistrationForm() {
         <div>
           <section>
             <label>Preço</label>
-            <input type="number" id="price" {...register('price')} />
+            <input
+              type="number"
+              id="price"
+              {...register('price')}
+              defaultValue={vehicle.price}
+            />
             <p>{errors.price?.message}</p>
           </section>
 
@@ -282,11 +331,19 @@ export function VehicleRegistrationForm() {
               placeholder="Mensagem"
               id="description"
               {...register('description')}
+              defaultValue={vehicle.description}
             />
             <p>{errors.description?.message}</p>
           </section>
         </div>
-        <button type="submit">Cadastrar</button>
+        {vehicle !== ({} as VehiclesDataProps) ? (
+          <button type="submit">Cadastrar</button>
+        ) : (
+          <button type="submit">Atualizar</button>
+        )}
+        {/* <button type="submit">
+          {vehicle.price === '' ? 'Atualizar' : 'Cadastrar'}
+        </button> */}
       </VeiculosContentForm>
     </FormProviderBase>
   )

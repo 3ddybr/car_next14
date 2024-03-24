@@ -11,7 +11,9 @@ export type VehiclesDataProps = {
   color_car: string
   price: string
   description: string
-  // 10 itens
+  exchange_car: string // Câmbio
+  fuel_car: string
+
   opcionais: {
     alarme: boolean
     som: boolean
@@ -20,6 +22,10 @@ export type VehiclesDataProps = {
     vidro_eletrico: boolean
     direcao_hidraulica: boolean
     ar_condicionado: boolean
+    camera_re: boolean
+    sensor_re: boolean
+    kit_gas: boolean
+    armored: boolean // blindado
   }
   refImage: [
     {

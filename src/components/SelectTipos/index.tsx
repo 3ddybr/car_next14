@@ -4,18 +4,18 @@ interface TypeCar {
   value: string
   label: string
 }
-interface PropsSelect {
+interface PropsSelect extends React.SelectHTMLAttributes<HTMLSelectElement> {
   dataOptions: TypeCar[]
   name: string
 }
 
-export function SelectTipos({ dataOptions, name }: PropsSelect) {
+export function SelectTipos({ dataOptions, name, ...rest }: PropsSelect) {
   const { control } = useFormContext()
   return (
     <Controller
       render={({ field }) => {
         return (
-          <select {...field}>
+          <select {...field} {...rest}>
             {dataOptions.map((item) => (
               <option key={item.value} value={item.value}>
                 {item.label}

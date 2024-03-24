@@ -15,10 +15,12 @@ import {
   ProductsDetailsDescription,
   ProductsDetailsOpcionais,
 } from './stylesProduct'
-import { Gauge, Swap } from '@phosphor-icons/react'
+import { Gauge, Swap, Pencil } from '@phosphor-icons/react'
 import { Cards } from '@/components/Cards'
 import { useFirebase } from '../../hooks/useFirebase'
 import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
+import Link from 'next/link'
+import { useStorage } from '../../contexts/useStorage'
 
 interface ProductProps {
   params: {
@@ -27,6 +29,7 @@ interface ProductProps {
 }
 
 export default function Product({ params }: ProductProps) {
+  const { dataCar } = useStorage()
   const { getLimitVehicles, getVehicle } = useFirebase()
   const [docLimitVehicles, setDocLimitVehicles] = useState<VehiclesDataProps[]>(
     [],
@@ -39,6 +42,7 @@ export default function Product({ params }: ProductProps) {
       const limitVehicles = await getLimitVehicles(4)
 
       setCar(VehicleData)
+      // dataCar(VehicleData)
       setDocLimitVehicles(limitVehicles)
     }
     VehicleData()
@@ -119,6 +123,13 @@ export default function Product({ params }: ProductProps) {
                     <Swap size={24} />
                     Auto
                   </span>
+                  <Link onClick={() => dataCar(car)} href={`/veiculos`}>
+                    <span>
+                      <Pencil size={24} />
+                      Editar
+                      {/* {car.id} */}
+                    </span>
+                  </Link>
                 </header>
                 <section>
                   <p>Por apenas</p>

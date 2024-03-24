@@ -10,7 +10,7 @@ export const ProductContainer = styled.div`
 `
 
 export const ProductContent = styled.div`
-  width: 100vw;
+  width: 100%;
   max-width: 117rem;
   margin: 6.4rem auto;
 
@@ -112,6 +112,23 @@ export const ProductDetailsCarrousel = styled.div`
     }
   } */
 
+  @media (max-width: 1060px) {
+    .image-gallery-content:not(.fullscreen)
+      .image-gallery-slide
+      .image-gallery-image {
+      width: 100%;
+      max-width: 50rem;
+      height: 35rem;
+      padding: 1rem;
+    }
+
+    .image-gallery-thumbnails-wrapper {
+      /* border: 1px solid blue; */
+      width: 100vw;
+      max-width: 50rem;
+      padding: 1rem;
+    }
+  }
   @media (max-width: 800px) {
     display: flex;
     align-content: center;
@@ -126,6 +143,7 @@ export const ProductDetailsCarrousel = styled.div`
 
 export const ProductsDetailsOpcionais = styled.section`
   margin-top: 4.3rem;
+  padding: 1rem;
   h2 {
     font-family: 'Inter';
     font-style: normal;
@@ -188,6 +206,7 @@ export const ProductsDetailsDescription = styled.section`
   margin-top: 4.3rem;
   padding-bottom: 6.5rem;
   border-bottom: 1px solid var(--gray-200);
+  padding: 1rem;
   h3 {
     font-family: Inter;
     font-weight: 700;
@@ -211,15 +230,13 @@ export const ProductsDetailsDescription = styled.section`
 `
 
 export const ProductDetailsInfo = styled.div`
-  /* border: 1px solid red; */
-
   margin-left: 3rem;
-  max-width: 47rem;
   background: #ffffff;
   box-shadow: 0px 0px 35px rgba(25, 55, 96, 0.15);
   border-radius: 5px;
 
   div {
+    width: 100%;
     /* padding: 1.2 1.2 1.2 8.4; */
     padding-left: 1.4rem;
     padding-right: 1.4rem;
@@ -306,7 +323,7 @@ export const ProductDetailsInfo = styled.div`
       }
 
       textarea {
-        width: 100%;
+        /* width: 100vw; */
         /* max-width: 56.9rem; */
         min-height: 16.5rem;
         font-size: 1.6rem;
@@ -339,19 +356,22 @@ export const ProductDetailsInfo = styled.div`
     }
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     /* border: 1px solid red; */
     margin: 0;
 
     display: flex;
+    max-width: 30rem;
     /* align-content: center; */
     justify-content: center;
-    max-width: 100%;
+    /* max-width: 100%; */
   }
 `
 
 export const ProductCarousel = styled.div`
   /* display: flex; */
+  width: 100%;
+  /* border: 1px solid red; */
   h3 {
     font-family: Inter;
     font-weight: 700;
@@ -375,7 +395,7 @@ export const ProductCarousel = styled.div`
 
   &::-webkit-scrollbar {
     /* width: 0.6rem; */
-    height: 0.6rem;
+    height: 0.8rem;
   }
 
   &::-webkit-scrollbar-track {
