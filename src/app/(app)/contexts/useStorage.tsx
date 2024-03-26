@@ -1,5 +1,11 @@
 'use client'
-import { ReactNode, createContext, useContext, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+} from 'react'
 import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
 
 type ImageProps = {
@@ -30,17 +36,18 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
     {} as VehiclesDataProps,
   )
 
-  function updateRefImages(refImg: ImageProps) {
+  const updateRefImages = useCallback((refImg: ImageProps) => {
     setRefImage((prevState) => [...prevState, refImg])
-  }
+  }, [])
 
-  function deleteImgContext(refImg: ImageProps[]) {
+  const deleteImgContext = useCallback((refImg: ImageProps[]) => {
     setRefImage(refImg)
-  }
+  }, [])
 
-  function dataCar(data: VehiclesDataProps) {
+  const dataCar = useCallback((data: VehiclesDataProps) => {
     setVehicle(data)
-  }
+    setRefImage(data.refImage)
+  }, [])
 
   return (
     <StorageContext.Provider

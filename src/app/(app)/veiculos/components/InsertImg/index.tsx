@@ -14,8 +14,9 @@ import { useFirebase } from '@/app/(app)/hooks/useFirebase'
 import { useStorage } from '@/app/(app)/contexts/useStorage'
 
 export function InsertImg() {
-  const { startUpload, progress, deleteImg } = useFirebase()
+  const { startUpload, deleteImg } = useFirebase()
   const { refImage } = useStorage()
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const fileTeste = e.target.files
@@ -41,7 +42,8 @@ export function InsertImg() {
         {refImage &&
           refImage.map((refImage) => (
             <StepsInsertImgMiniature key={refImage.imgRefFullPath}>
-              {progress < 100 ? (
+              {
+                // progress < 100 ? (
                 // <input
                 //   type="range"
                 //   // defaultValue={progress}
@@ -50,8 +52,8 @@ export function InsertImg() {
                 //   min={0}
                 //   max={100}
                 // />
-                <span>{progress}%</span>
-              ) : (
+                // <span>{progress}%</span>
+                // ) :
                 <>
                   <X
                     size={25}
@@ -72,7 +74,7 @@ export function InsertImg() {
                     priority
                   />
                 </>
-              )}
+              }
             </StepsInsertImgMiniature>
           ))}
       </StepsInsertImgContentImage>

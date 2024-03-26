@@ -65,9 +65,9 @@ export function VehicleRegistrationForm() {
   type FormData = yup.InferType<typeof schemaFormProduto>
 
   // console.log(vehicle)
-  if (vehicle) {
-    console.log(vehicle.refImage)
-  }
+  // if (vehicle) {
+  //   console.log(vehicle.refImage)
+  // }
 
   const useFormReturn = useForm<FormData>({
     resolver: yupResolver(schemaFormProduto),
