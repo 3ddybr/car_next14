@@ -26,7 +26,7 @@ export function SelectTipos({ dataOptions, name, ...rest }: PropsSelect) {
       }}
       control={control}
       name={name}
-      defaultValue=""
+      // defaultValue=""
     />
   )
 }

@@ -21,6 +21,8 @@ import { useFirebase } from '../../hooks/useFirebase'
 import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
 import Link from 'next/link'
 import { useStorage } from '../../contexts/useStorage'
+import { dataVersionCars } from '@/utils/dataCars'
+import { dataCores } from '@/utils/dataColors'
 
 interface ProductProps {
   params: {
@@ -95,11 +97,22 @@ export default function Product({ params }: ProductProps) {
                   </div>
                   <div>
                     <p>Versão</p>
-                    <strong>{car.version_car}</strong>
+                    <strong>
+                      {
+                        dataVersionCars.filter(
+                          (i) => i.value === car.version_car,
+                        )[0]?.label
+                      }
+                    </strong>
                   </div>
                   <div>
                     <p>Cor</p>
-                    <strong>{car.color_car}</strong>
+                    <strong>
+                      {
+                        dataCores.filter((i) => i.value === car.color_car)[0]
+                          ?.label
+                      }
+                    </strong>
                   </div>
                 </section>
               </ProductsDetailsOpcionais>

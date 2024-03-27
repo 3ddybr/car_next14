@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -21,14 +20,12 @@ import { InsertImg } from '../InsertImg'
 import { useFirebase } from '@/app/(app)/hooks/useFirebase'
 import { useStorage } from '@/app/(app)/contexts/useStorage'
 import { dataCores } from '@/utils/dataColors'
-import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
+import { useRouter } from 'next/navigation'
 
 const schemaFormProduto = yup.object({
   title: yup.string().required('Titulo e obrigatório').min(3),
-
   type: yup.string().required('Tipo de veículos obrigatório'),
   brand: yup.string().required('Marca de veículos obrigatório'), // marca
-
   model: yup.string().required('Modelo e obrigatório'),
   version_car: yup.string().required('Versão e obrigatório'),
   year_model: yup
@@ -59,18 +56,42 @@ const schemaFormProduto = yup.object({
 })
 
 export function VehicleRegistrationForm() {
-  const { InsertVehicle } = useFirebase()
+  const { InsertVehicle, UpdateVehicle } = useFirebase()
   const { refImage, vehicle } = useStorage()
-  const [refIdDocDB, setRefIdDocDB] = useState('')
-  type FormData = yup.InferType<typeof schemaFormProduto>
 
-  // console.log(vehicle)
-  // if (vehicle) {
-  //   console.log(vehicle.refImage)
-  // }
+  const router = useRouter()
+
+  type FormData = yup.InferType<typeof schemaFormProduto>
 
   const useFormReturn = useForm<FormData>({
     resolver: yupResolver(schemaFormProduto),
+    defaultValues: {
+      title: vehicle?.title,
+      type: vehicle?.type,
+      brand: vehicle?.brand,
+      model: vehicle?.model,
+      version_car: vehicle?.version_car,
+      year_model: vehicle?.year_model,
+      mileage: vehicle?.mileage,
+      color_car: vehicle?.color_car,
+      exchange_car: vehicle?.exchange_car,
+      fuel_car: vehicle?.fuel_car,
+      price: vehicle?.price,
+      description: vehicle?.description,
+      opcionais: {
+        alarme: vehicle.opcionais?.alarme,
+        som: vehicle.opcionais?.som,
+        airbag: vehicle.opcionais?.airbag,
+        trava_eletrica: vehicle.opcionais?.trava_eletrica,
+        vidro_eletrico: vehicle.opcionais?.vidro_eletrico,
+        camera_re: vehicle.opcionais?.camera_re,
+        sensor_re: vehicle.opcionais?.sensor_re,
+        kit_gas: vehicle.opcionais?.kit_gas,
+        armored: vehicle.opcionais?.armored,
+        direcao_hidraulica: vehicle.opcionais?.direcao_hidraulica,
+        ar_condicionado: vehicle.opcionais?.ar_condicionado,
+      },
+    },
   })
 
   const {
@@ -86,12 +107,18 @@ export function VehicleRegistrationForm() {
       return
     }
     try {
-      const ref = await InsertVehicle({ ...data, refImage })
-      setRefIdDocDB(ref.id)
-      console.log('Document written with ID cadastrado: ', ref.id, refIdDocDB)
-
-      reset() // limpa o formulário
-      alert('Cadastrado com sucesso!')
+      if (vehicle.id) {
+        await UpdateVehicle({ ...data, refImage }, vehicle.id)
+        reset() // limpa o formulário
+        router.push(`/veiculos/${vehicle.id}`)
+        alert('Atualizado com sucesso!')
+      } else {
+        const ref = await InsertVehicle({ ...data, refImage })
+        console.log('Document written with ID cadastrado: ', ref.id)
+        router.push(`/veiculos/${ref.id}`)
+        reset() // limpa o formulário
+        alert('Cadastrado com sucesso!')
+      }
     } catch (error) {
       console.error(
         'Error adding document: (Erro ao cadastrar Veiculo) ',
@@ -99,7 +126,6 @@ export function VehicleRegistrationForm() {
       )
     }
   }
-
   return (
     <FormProviderBase useFormReturn={useFormReturn}>
       <VeiculosContentForm onSubmit={handleSubmit(handleSubmitForm)}>
@@ -107,11 +133,7 @@ export function VehicleRegistrationForm() {
         <div>
           <section>
             <label>Tipo</label>
-            <SelectTipos
-              dataOptions={dataTypesVehicles}
-              name="type"
-              value={vehicle.type}
-            />
+            <SelectTipos dataOptions={dataTypesVehicles} name="type" />
             <p>{errors.type?.message}</p>
           </section>
           <section>
@@ -122,27 +144,18 @@ export function VehicleRegistrationForm() {
               id="title"
               {...register('title')}
               placeholder="ex: Gol G3 Power 1.0 16v"
-              defaultValue={vehicle.title}
             />
             <p>{errors.title?.message}</p>
           </section>
 
           <section>
             <label>Marcas</label>
-            <SelectTipos
-              dataOptions={dataBrandCars}
-              name="brand"
-              value={vehicle.brand}
-            />
+            <SelectTipos dataOptions={dataBrandCars} name="brand" />
             <p>{errors.brand?.message}</p>
           </section>
           <section>
             <label>Versão</label>
-            <SelectTipos
-              dataOptions={dataVersionCars}
-              name="version_car"
-              value={vehicle?.version_car}
-            />
+            <SelectTipos dataOptions={dataVersionCars} name="version_car" />
             <p>{errors.version_car?.message}</p>
           </section>
           <section>
@@ -151,7 +164,6 @@ export function VehicleRegistrationForm() {
               placeholder="Informe a Modelo"
               {...register('model')}
               id="model"
-              defaultValue={vehicle.model}
             />
             <p>{errors.model?.message}</p>
           </section>
@@ -162,7 +174,6 @@ export function VehicleRegistrationForm() {
               placeholder="Informe a km"
               {...register('mileage')}
               id="mileage"
-              defaultValue={vehicle.mileage}
             />
             <p>{errors.mileage?.message}</p>
           </section>
@@ -173,35 +184,22 @@ export function VehicleRegistrationForm() {
               placeholder="Informe a Ano/Fabricação"
               {...register('year_model')}
               id="year_model"
-              defaultValue={vehicle?.year_model}
             />
             <p>{errors.year_model?.message}</p>
           </section>
           <section>
             <label>Cor</label>
-            <SelectTipos
-              dataOptions={dataCores}
-              name="color_car"
-              value={vehicle?.color_car}
-            />
+            <SelectTipos dataOptions={dataCores} name="color_car" />
             <p>{errors.color_car?.message}</p>
           </section>
           <section>
             <label>Câmbio</label>
-            <SelectTipos
-              dataOptions={dataExchangeCars}
-              name="exchange_car"
-              value={vehicle.exchange_car}
-            />
+            <SelectTipos dataOptions={dataExchangeCars} name="exchange_car" />
             <p>{errors.exchange_car?.message}</p>
           </section>
           <section>
             <label>Combustível</label>
-            <SelectTipos
-              dataOptions={dataFuelCars}
-              name="fuel_car"
-              value={vehicle.fuel_car}
-            />
+            <SelectTipos dataOptions={dataFuelCars} name="fuel_car" />
             <p>{errors.fuel_car?.message}</p>
           </section>
         </div>
@@ -336,14 +334,9 @@ export function VehicleRegistrationForm() {
             <p>{errors.description?.message}</p>
           </section>
         </div>
-        {vehicle !== ({} as VehiclesDataProps) ? (
-          <button type="submit">Cadastrar</button>
-        ) : (
-          <button type="submit">Atualizar</button>
-        )}
-        {/* <button type="submit">
-          {vehicle.price === '' ? 'Atualizar' : 'Cadastrar'}
-        </button> */}
+        <button type="submit">
+          {vehicle.id === undefined ? 'Cadastrar' : 'Atualizar'}
+        </button>
       </VeiculosContentForm>
     </FormProviderBase>
   )

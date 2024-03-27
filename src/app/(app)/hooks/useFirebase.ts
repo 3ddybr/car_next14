@@ -15,6 +15,7 @@ import {
   getDocs,
   limit,
   query,
+  updateDoc,
 } from 'firebase/firestore'
 import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
 import { useStorage } from '../contexts/useStorage'
@@ -131,6 +132,11 @@ export function useFirebase() {
     return docRef
   }
 
+  const UpdateVehicle = async (data: object, id: string) => {
+    const vehiclesCol = doc(firestoreDB, 'vehicles', id)
+    await updateDoc(vehiclesCol, data)
+  }
+
   return {
     refImage,
     startUpload,
@@ -140,5 +146,6 @@ export function useFirebase() {
     getVehicle,
     getLimitVehicles,
     InsertVehicle,
+    UpdateVehicle,
   }
 }
