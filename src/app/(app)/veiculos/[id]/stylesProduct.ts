@@ -145,7 +145,7 @@ export const ProductsDetailsOpcionais = styled.section`
   margin-top: 4.3rem;
   padding: 1rem;
   h2 {
-    font-family: 'Inter';
+    /* font-family: 'Inter'; */
     font-style: normal;
     font-weight: 700;
     font-size: 2.5rem;
@@ -180,7 +180,7 @@ export const ProductsDetailsOpcionais = styled.section`
         margin: 0;
         padding: 0;
 
-        font-family: 'Inter';
+        /* font-family: 'Inter'; */
         font-style: normal;
         font-weight: 400;
         font-size: 1.4rem;
@@ -191,7 +191,7 @@ export const ProductsDetailsOpcionais = styled.section`
         margin: 0;
         padding: 0;
 
-        font-family: 'Inter';
+        /* font-family: 'Inter'; */
         font-style: normal;
         font-weight: 600;
         font-size: 1.6rem;
@@ -208,7 +208,7 @@ export const ProductsDetailsDescription = styled.section`
   border-bottom: 1px solid var(--gray-200);
   padding: 1rem;
   h3 {
-    font-family: Inter;
+    /* font-family: Inter; */
     font-weight: 700;
     font-size: 2rem;
     line-height: 2.4rem;
@@ -216,7 +216,7 @@ export const ProductsDetailsDescription = styled.section`
   }
 
   p {
-    font-family: 'Open Sans';
+    /* font-family: 'Open Sans'; */
     /* font-style: normal; */
     font-weight: 400;
     font-size: 1.8rem;
@@ -242,7 +242,6 @@ export const ProductDetailsInfo = styled.div`
     padding-right: 1.4rem;
     h1 {
       margin: 0;
-      font-family: 'Inter';
       font-style: normal;
       font-weight: 700;
       font-size: 3.2rem;
@@ -266,7 +265,7 @@ export const ProductDetailsInfo = styled.div`
         justify-content: center;
         gap: 0.4rem;
 
-        font-family: 'Open Sans';
+        /* font-family: 'Open Sans'; */
         font-style: normal;
         font-weight: 400;
         font-size: 1.6rem;
@@ -283,7 +282,7 @@ export const ProductDetailsInfo = styled.div`
       display: flex;
       flex-direction: column;
       p {
-        font-family: 'Inter';
+        /* font-family: 'Inter'; */
         font-style: normal;
         font-weight: 700;
         font-size: 1.6rem;
@@ -293,7 +292,7 @@ export const ProductDetailsInfo = styled.div`
       }
 
       label {
-        font-family: 'Open Sans';
+        /* font-family: 'Open Sans'; */
         font-style: normal;
         font-weight: 700;
         font-size: 1.4rem;
@@ -373,7 +372,7 @@ export const ProductCarousel = styled.div`
   width: 100%;
   /* border: 1px solid red; */
   h3 {
-    font-family: Inter;
+    /* font-family: Inter; */
     font-weight: 700;
     font-size: 2rem;
     line-height: 2.4rem;
@@ -382,7 +381,7 @@ export const ProductCarousel = styled.div`
   margin-top: 6.4rem;
 
   p {
-    font-family: 'Open Sans';
+    /* font-family: 'Open Sans'; */
     font-style: normal;
     font-weight: 400;
     font-size: 18px;

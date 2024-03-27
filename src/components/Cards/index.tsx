@@ -28,7 +28,7 @@ export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
             showPlayButton={false}
             showNav={false}
             showBullets={true}
-            autoPlay={true}
+            // autoPlay={true}
             infinite={true}
             slideInterval={3000}
           />

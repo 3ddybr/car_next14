@@ -1,10 +1,15 @@
 import type { Metadata } from 'next'
-// import { Inter } from 'next/font/google'
 import { GlobalStyle } from './styles/global'
 import StyledComponentsRegistry from '../../lib/registry'
 import { StorageProvider } from './(app)/contexts/useStorage'
 
-// const inter = Inter({ subsets: ['latin'] })
+// eslint-disable-next-line camelcase
+import { Open_Sans } from 'next/font/google'
+
+export const OpenSansFont = Open_Sans({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
   title: 'FestCar',
@@ -19,7 +24,7 @@ export default function RootLayout({
   return (
     <>
       <GlobalStyle />
-      <html lang="pt-br">
+      <html lang="pt-br" className={OpenSansFont.className}>
         <body>
           <StorageProvider>
             <StyledComponentsRegistry>{children}</StyledComponentsRegistry>

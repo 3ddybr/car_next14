@@ -117,6 +117,7 @@ export function VehicleRegistrationForm() {
         console.log('Document written with ID cadastrado: ', ref.id)
         router.push(`/veiculos/${ref.id}`)
         reset() // limpa o formulário
+        // console.log(data, refImage)
         alert('Cadastrado com sucesso!')
       }
     } catch (error) {

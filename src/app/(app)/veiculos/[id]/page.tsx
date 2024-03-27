@@ -75,7 +75,7 @@ export default function Product({ params }: ProductProps) {
                   showPlayButton={false}
                   showNav={false}
                   showBullets={true}
-                  autoPlay={true}
+                  // autoPlay={true}
                   infinite={true}
                   slideInterval={3000}
                 />

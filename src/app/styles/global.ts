@@ -2,6 +2,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
+
 *{
     margin: 0;
     padding: 0;
@@ -34,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
   --title: #25303F;
   --text: #666F7A;
   --text-off: #9AA3AA;
+  
 }
 
 html{
@@ -50,7 +52,7 @@ html,body{
 }
 
 body, form, input, textarea, select, button {
-    font: 700 1rem "Open+Sans", sans-serif;
+    /* font: 700 1rem "Open+Sans", sans-serif; */
 }
 
 a, button, img{
