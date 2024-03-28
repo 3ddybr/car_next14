@@ -1,20 +1,19 @@
 'use client'
-import Link from 'next/link'
+import Link, { LinkProps } from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { FormEvent, ReactElement } from 'react'
-interface ActiveLinkProps {
-  href: string
+type ActiveLinkProps = LinkProps & {
   children: ReactElement
 }
 
-const ActiveLink = ({ children, href }: ActiveLinkProps) => {
+const ActiveLink = ({ children, href, ...rest }: ActiveLinkProps) => {
   const { push } = useRouter()
   const pathname = usePathname()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = (e: FormEvent) => {
     e.preventDefault()
-    push(href)
+    push(href.toString())
   }
 
   const styles = {
@@ -22,7 +21,7 @@ const ActiveLink = ({ children, href }: ActiveLinkProps) => {
   }
 
   return (
-    <Link href={href} onClick={handleClick} style={styles}>
+    <Link href={href} onClick={handleClick} style={styles} {...rest}>
       {children}
     </Link>
   )

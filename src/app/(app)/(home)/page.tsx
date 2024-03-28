@@ -7,6 +7,7 @@ import { Cards } from '@/components/Cards'
 import { HomeContainer, HomeContent } from './styles'
 import { useFirebase } from '../hooks/useFirebase'
 import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
+import { dataExchangeCars } from '@/utils/dataCars'
 
 export default function Home() {
   const { getLimitVehicles } = useFirebase()
@@ -38,6 +39,10 @@ export default function Home() {
                 original: i.imgUrl,
                 thumbnail: i.imgUrl,
               }))}
+              exchange={
+                dataExchangeCars.filter((i) => i.value === doc.exchange_car)[0]
+                  ?.label
+              }
               title={doc.title}
               year={doc.year_model}
               id={doc.id}

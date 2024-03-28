@@ -142,7 +142,7 @@ export const ProductDetailsCarrousel = styled.div`
 `
 
 export const ProductsDetailsOpcionais = styled.section`
-  margin-top: 4.3rem;
+  margin-top: 2.3rem;
   padding: 1rem;
   h2 {
     /* font-family: 'Inter'; */
@@ -159,6 +159,8 @@ export const ProductsDetailsOpcionais = styled.section`
     justify-content: flex-start;
     gap: 0.8rem;
 
+    margin-bottom: 2rem;
+
     overflow: hidden;
     height: 100%;
     max-height: 6.1rem;
@@ -169,12 +171,13 @@ export const ProductsDetailsOpcionais = styled.section`
       align-items: flex-start;
 
       padding: 0.8rem 1.6rem;
-      gap: 1rem;
+      /* gap: 1rem; */
 
       background: var(--white);
       box-shadow: 0px 0px 35px rgba(25, 55, 96, 0.15);
       border-radius: 5px;
       min-height: 6.1rem;
+      max-height: 6.1rem;
 
       p {
         margin: 0;
@@ -188,10 +191,13 @@ export const ProductsDetailsOpcionais = styled.section`
       }
 
       strong {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: hidden;
         margin: 0;
         padding: 0;
 
-        /* font-family: 'Inter'; */
         font-style: normal;
         font-weight: 600;
         font-size: 1.6rem;
@@ -200,10 +206,31 @@ export const ProductsDetailsOpcionais = styled.section`
       }
     }
   }
+
+  .options_boolean {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+
+    /* border: 1px solid red; */
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      /* border: 1px solid red; */
+    }
+  }
 `
 
 export const ProductsDetailsDescription = styled.section`
-  margin-top: 4.3rem;
+  margin-top: 2.3rem;
   padding-bottom: 6.5rem;
   border-bottom: 1px solid var(--gray-200);
   padding: 1rem;
@@ -360,19 +387,15 @@ export const ProductDetailsInfo = styled.div`
     margin: 0;
 
     display: flex;
-    max-width: 30rem;
-    /* align-content: center; */
+
     justify-content: center;
-    /* max-width: 100%; */
   }
 `
 
 export const ProductCarousel = styled.div`
-  /* display: flex; */
   width: 100%;
   /* border: 1px solid red; */
   h3 {
-    /* font-family: Inter; */
     font-weight: 700;
     font-size: 2rem;
     line-height: 2.4rem;
@@ -381,7 +404,6 @@ export const ProductCarousel = styled.div`
   margin-top: 6.4rem;
 
   p {
-    /* font-family: 'Open Sans'; */
     font-style: normal;
     font-weight: 400;
     font-size: 18px;

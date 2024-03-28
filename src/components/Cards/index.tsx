@@ -14,9 +14,18 @@ interface CardProps {
   year: string
   mileage: string
   price: string
+  exchange: string
   imgUrl: { original: string; thumbnail: string }[]
 }
-export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
+export function Cards({
+  title,
+  mileage,
+  price,
+  imgUrl,
+  year,
+  id,
+  exchange,
+}: CardProps) {
   return (
     <CardContainer>
       <CardContent>
@@ -48,7 +57,7 @@ export function Cards({ title, mileage, price, imgUrl, year, id }: CardProps) {
             </p>
             <p>
               <Swap size={20} />
-              auto
+              {exchange}
             </p>
           </div>
 

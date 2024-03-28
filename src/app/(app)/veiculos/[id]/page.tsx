@@ -15,13 +15,17 @@ import {
   ProductsDetailsDescription,
   ProductsDetailsOpcionais,
 } from './stylesProduct'
-import { Gauge, Swap, Pencil } from '@phosphor-icons/react'
+import { Gauge, Swap, Pencil, Check } from '@phosphor-icons/react'
 import { Cards } from '@/components/Cards'
 import { useFirebase } from '../../hooks/useFirebase'
 import { VehiclesDataProps } from '@/app/types/vehiclesDataProps'
 import Link from 'next/link'
 import { useStorage } from '../../contexts/useStorage'
-import { dataVersionCars } from '@/utils/dataCars'
+import {
+  dataExchangeCars,
+  dataFuelCars,
+  dataVersionCars,
+} from '@/utils/dataCars'
 import { dataCores } from '@/utils/dataColors'
 
 interface ProductProps {
@@ -81,20 +85,27 @@ export default function Product({ params }: ProductProps) {
                 />
               </ProductDetailsCarrousel>
               <ProductsDetailsOpcionais>
-                <h2>Resumo do veiculo</h2>
+                <h2>Resumo do veículo</h2>
                 <section>
                   <div>
                     <p>Ano</p>
                     <strong>{car.year_model}</strong>
                   </div>
-                  <div>
-                    <p>km</p>
-                    <strong>{car.mileage}</strong>
-                  </div>
+
                   <div>
                     <p>Modelo</p>
                     <strong>{car.model}</strong>
                   </div>
+                  <div>
+                    <p>Combustível</p>
+                    <strong>
+                      {
+                        dataFuelCars.filter((i) => i.value === car.fuel_car)[0]
+                          ?.label
+                      }
+                    </strong>
+                  </div>
+
                   <div>
                     <p>Versão</p>
                     <strong>
@@ -115,6 +126,98 @@ export default function Product({ params }: ProductProps) {
                     </strong>
                   </div>
                 </section>
+
+                <section className="options_boolean">
+                  {car.opcionais?.alarme ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Alarme
+                    </span>
+                  ) : (
+                    ''
+                  )}
+
+                  {car.opcionais?.som ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Som
+                    </span>
+                  ) : (
+                    ''
+                  )}
+
+                  {car.opcionais?.airbag ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Airbag
+                    </span>
+                  ) : (
+                    ''
+                  )}
+
+                  {car.opcionais?.trava_eletrica ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Trava
+                      Eletrica
+                    </span>
+                  ) : (
+                    ''
+                  )}
+
+                  {car.opcionais?.vidro_eletrico ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Vidro
+                      Eletrico
+                    </span>
+                  ) : (
+                    ''
+                  )}
+
+                  {car.opcionais?.direcao_hidraulica ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Direção
+                      Hidraulica
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                  {car.opcionais?.ar_condicionado ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" />
+                      Ar condicionado
+                    </span>
+                  ) : (
+                    ''
+                  )}
+
+                  {car.opcionais?.camera_re ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Camera
+                      de ré
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                  {car.opcionais?.sensor_re ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Sensor
+                      de ré
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                  {car.opcionais?.kit_gas ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Kit gás
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                  {car.opcionais?.armored ? (
+                    <span>
+                      <Check size={20} color="#263660" weight="bold" /> Blindado
+                    </span>
+                  ) : (
+                    ''
+                  )}
+                </section>
               </ProductsDetailsOpcionais>
               <ProductsDetailsDescription>
                 <h3>Informações sobre o carro</h3>
@@ -134,13 +237,16 @@ export default function Product({ params }: ProductProps) {
                   </span>
                   <span>
                     <Swap size={24} />
-                    Auto
+                    {
+                      dataExchangeCars.filter(
+                        (i) => i.value === car.exchange_car,
+                      )[0]?.label
+                    }
                   </span>
                   <Link onClick={() => dataCar(car)} href={`/veiculos`}>
                     <span>
                       <Pencil size={24} />
                       Editar
-                      {/* {car.id} */}
                     </span>
                   </Link>
                 </header>
@@ -182,6 +288,11 @@ export default function Product({ params }: ProductProps) {
                       original: i.imgUrl,
                       thumbnail: i.imgUrl,
                     }))}
+                    exchange={
+                      dataExchangeCars.filter(
+                        (i) => i.value === doc.exchange_car,
+                      )[0]?.label
+                    }
                     title={doc.title}
                     year={doc.year_model}
                     id={doc.id}
